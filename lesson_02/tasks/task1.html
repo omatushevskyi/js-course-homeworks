@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці</p>
+
+<script>
+  const number1 = parseFloat(prompt('Введіть перше число', '0.0'))
+  const number2 = parseFloat(prompt('Введіть друге число', '0.0'))
+
+  const add = number1 + number2
+  const multiply = number1 * number2
+  const divide = number1 / number2
+
+  document.write(`
+    <p>Число 1: ${number1}, число 2: ${number2}</p>
+    <table border="1">
+      <tr>
+        <th>Сума</th>
+        <th>Добуток</th>
+        <th>Частка</th>
+      </tr>
+      <tr>
+        <td>${add.toFixed(2)}</td>
+        <td>${multiply.toFixed(2)}</td>
+        <td>${divide.toFixed(2)}</td>
+      </tr>
+    </table>
+  `)
+</script>
+
+</body>
+</html>

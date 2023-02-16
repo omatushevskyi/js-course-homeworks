@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 0</title>
+</head>
+<body>
+<h1>Задача 0</h1>
+<p>Обчислити значення виразів</p>
+<img src="./img-task0.png" alt="task0">
+<br>
+
+<script>
+  let a = parseInt(prompt('Введіть значення змінної a', '0'))
+  let b = parseInt(prompt('Введіть значення змінної b', '0'))
+  let c = parseInt(prompt('Введіть значення змінної c', '0'))
+
+  let s1 = a + 12 + b
+  let s2 = Math.sqrt((a + b) / 2 * a)
+  let s3 = Math.cbrt((a + b) * c)
+  let s4 = Math.sin(a / (-b))
+
+  document.write(`S1 = ${s1} <br>
+                  S2 = ${s2} <br>
+                  S3 = ${s3} <br>
+                  S4 = ${s4}`)
+</script>
+
+</body>
+</html>

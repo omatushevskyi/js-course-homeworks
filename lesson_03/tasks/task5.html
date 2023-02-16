@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести
+  на екран назву транспортного засобу, яким він може керувати.</p>
+
+<script>
+  const drivingCategory = prompt('Введіть категорію водійського посвідчення (A, B або C - латинські літери)')
+
+  // За допопмогою if
+
+  // if (drivingCategory === 'A' || drivingCategory === 'a') {
+  //   document.write('Ви можете керувати мотоциклом')
+  // } else if (drivingCategory === 'B' || drivingCategory === 'b') {
+  //   document.write('Ви можете керувати легковим автомобілем')
+  // } else if (drivingCategory === 'C' || drivingCategory === 'c') {
+  //   document.write('Ви можете керувати вантажним автомобілем')
+  // } else {
+  //   document.write('Ви ввели не правильну категорію')
+  // }
+
+  switch (drivingCategory) {
+    case 'A':
+    case 'a':
+      document.write('Ви можете керувати мотоциклом')
+      break
+    case 'B':
+    case 'b':
+      document.write('Ви можете керувати легковим автомобілем')
+      break
+    case 'C':
+    case 'c':
+      document.write('Ви можете керувати вантажним автомобілем')
+      break
+    default:
+      document.write('Ви ввели не правильну категорію')
+      break
+  }
+
+</script>
+</body>
+</html>
