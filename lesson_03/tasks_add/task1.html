@@ -18,23 +18,25 @@
 </p>
 
 <script>
-  const menuItem = parseInt(prompt('Виберіть пункт меню'))
+  const menuItem = parseInt(prompt(`Виберіть пункт меню\n1. Веселий\n2.Сумний\n3.Обурений`))
 
+  let showEmoji
   switch (menuItem) {
     case 1:
-      document.write(`<h1>&#128512;</h1>`)
+      showEmoji = `<h1>&#128512;</h1>`
       break
     case 2:
-      document.write(`<h1>&#128546;</h1>`)
+      showEmoji = `<h1>&#128546;</h1>`
       break
     case 3:
-      document.write(`<h1>&#128545;</h1>`)
+      showEmoji = `<h1>&#128545;</h1>`
       break
     default:
-      document.write('Ви ввели некоректні дані')
+      showEmoji = 'Ви ввели некоректні дані'
       break
   }
 
+  document.write(showEmoji)
 </script>
 
 </body>

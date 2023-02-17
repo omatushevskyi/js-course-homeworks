@@ -9,26 +9,26 @@
 </head>
 <body>
 <h1>Задача 3</h1>
-<p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</p>
+<p>Комп’ютер загадує число від 1 до 10. Двоє користувачів надають свої відповіді. Виграє той, у кого число
+  знаходиться ближче до загаданого комп’ютером числа.
+</p>
 
 <script>
-  const randNum = Math.floor(Math.random() * 5) + 1
-  let userNum = parseInt(prompt('Вгадайте число за 2 спроби. Введіть від 1 до 5'))
-  let attempts = 0
+  const randNum = Math.floor(Math.random() * 10) + 1
+  const firstUserNum = parseInt(prompt('Гравець 1, Введіть число від 1 до 10'))
+  const secondUserNum = parseInt(prompt('Гравець 2, Введіть число від 1 до 10'))
+  let diffOne, diffTwo, showResult
 
-  if (userNum === randNum) {
-    attempts++
-    document.write(`Вітаю!!! Ви вгадали число. К-ть спроб: ${attempts}`)
-  } else if (userNum !== randNum) {
-    attempts = attempts + 2
-    userNum = parseInt(prompt('Ви не вгадали число. Спробуйте ще раз.'))
-    if (userNum === randNum) {
-      document.write(`Вітаю! Ви вгадали число. К-ть спроб: ${attempts}`)
-    } else {
-      document.write(`Програш. Вам не вдалось вгадали число за 2 спроби.`)
-    }
-  }
+  if (randNum < firstUserNum) diffOne = firstUserNum - randNum
+  else diffOne = randNum - firstUserNum
 
+  if (randNum < secondUserNum) diffTwo = secondUserNum - randNum
+  else diffTwo = randNum - secondUserNum
+
+  if (diffOne < diffTwo) showResult = `Гравець 1 виграв! Число ${firstUserNum} ближче до ${randNum} ніж ${secondUserNum}`
+  else showResult = `Гравець 2 виграв! Число ${secondUserNum} ближче до ${randNum} ніж ${firstUserNum}`
+
+  document.write(showResult)
 </script>
 
 </body>
