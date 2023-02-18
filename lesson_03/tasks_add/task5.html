@@ -9,42 +9,36 @@
 </head>
 <body>
 <h1>Задача 5</h1>
-<p>З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести
-  на екран назву транспортного засобу, яким він може керувати.</p>
+<p>Модифікувати попередню задачу з можливістю після пострілу переміщення корабля у, випадковим чином вибрану сусідню
+  клітинку (якщо звичайно корабель не було потоплено за першим разом).</p>
 
 <script>
-  const drivingCategory = prompt('Введіть категорію водійського посвідчення (A, B або C - латинські літери)')
+  const numOfSquares = parseInt(prompt('Введіть кількість квадратів'))
+  let shipPosition = Math.floor(Math.random() * numOfSquares) + 1
+  let userShot = parseInt(prompt(`Введіть позицію корабля (1 – ${numOfSquares}), щоб вистрілити ${shipPosition}`))
+  let changePosition, result
 
-  // За допопмогою if
+  if (userShot === shipPosition)
+    result = 'Вітаю, ви потопили корабель з першого разу'
 
-  // if (drivingCategory === 'A' || drivingCategory === 'a') {
-  //   document.write('Ви можете керувати мотоциклом')
-  // } else if (drivingCategory === 'B' || drivingCategory === 'b') {
-  //   document.write('Ви можете керувати легковим автомобілем')
-  // } else if (drivingCategory === 'C' || drivingCategory === 'c') {
-  //   document.write('Ви можете керувати вантажним автомобілем')
-  // } else {
-  //   document.write('Ви ввели не правильну категорію')
-  // }
+  else if (userShot === shipPosition - 1 || userShot === shipPosition + 1) {
+    changePosition = Math.round(Math.random()) * 2 - 1
 
-  switch (drivingCategory) {
-    case 'A':
-    case 'a':
-      document.write('Ви можете керувати мотоциклом')
-      break
-    case 'B':
-    case 'b':
-      document.write('Ви можете керувати легковим автомобілем')
-      break
-    case 'C':
-    case 'c':
-      document.write('Ви можете керувати вантажним автомобілем')
-      break
-    default:
-      document.write('Ви ввели не правильну категорію')
-      break
+    if (shipPosition === 1) shipPosition++
+    else if (shipPosition === numOfSquares) shipPosition--
+    else shipPosition = shipPosition + changePosition
+
+    userShot = parseInt(prompt(`Ви пошкодили корабель, стріляйте ще раз ${shipPosition}`))
+    if (userShot === shipPosition) result = 'Вітаю, ви потопили корабель за 2 постріли'
+    else result = 'Ви програли!'
   }
 
+  else {
+    userShot = parseInt(prompt(`Мимо. У вас залишилась одна спроба`))
+    if (userShot !== shipPosition) result = 'Ви програли!'
+  }
+
+  document.write(result)
 </script>
 </body>
 </html>
