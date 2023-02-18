@@ -18,27 +18,29 @@
     case 12:
     case 1:
     case 2:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це зима`)
+      showResult = `Ви ввели номер місяця ${numberOfMonth} – це зима`
       break
     case 3:
     case 4:
     case 5:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це весна`)
+      showResult = `Ви ввели номер місяця ${numberOfMonth} – це весна`
       break
     case 6:
     case 7:
     case 8:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це літо`)
+      showResult = `Ви ввели номер місяця ${numberOfMonth} – це літо`
       break
     case 9:
     case 10:
     case 11:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це осінь`)
+      showResult = `Ви ввели номер місяця ${numberOfMonth} – це осінь`
       break
     default:
-      document.write(`Ви ввели не коректні дані.`)
+      showResult = `Ви ввели не коректні дані.`
       break
   }
+
+  document.write(showResult)
 </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Задача 2</h1>
-<p>З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше,
+<p>З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає, то відмовляємо у покупці, інакше,
   якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.</p>
 
 <script>
@@ -17,13 +17,12 @@
   const amountMoney = parseFloat(prompt('Введіть к-ть грошей', '0.0'))
   const lotteryPrice = 4
 
-  if ((amountMoney - itemPrice) >= lotteryPrice) {
-    document.write('Чи бажаєте придбати лотерейний білет?')
-  } else if (amountMoney < itemPrice) {
-    document.write('Відмова - недостатньо коштів')
-  } else {
-    document.write('Оплата пройшла успішно')
-  }
+  let showResult
+  if ((amountMoney - itemPrice) >= lotteryPrice) showResult = 'Чи бажаєте придбати лотерейний білет?'
+  else if (amountMoney < itemPrice) showResult = 'Відмова - недостатньо коштів'
+  else showResult = 'Оплата пройшла успішно.'
+
+  document.write(showResult)
 </script>
 
 </body>

@@ -14,32 +14,35 @@
 <script>
   const dayOfWeek = parseInt(prompt('Введіть номер дня тижня'))
 
+  let showResult
   switch (dayOfWeek) {
     case 1:
-      document.write(`Ви ввели ${dayOfWeek} – понеділок`)
+      showResult = `Ви ввели ${dayOfWeek} – понеділок`
       break
     case 2:
-      document.write(`Ви ввели ${dayOfWeek} – вівторок`)
+      showResult = `Ви ввели ${dayOfWeek} – вівторок`
       break
     case 3:
-      document.write(`Ви ввели ${dayOfWeek} – середа`)
+      showResult = `Ви ввели ${dayOfWeek} – середа`
       break
     case 4:
-      document.write(`Ви ввели ${dayOfWeek} – четвер`)
+      showResult = `Ви ввели ${dayOfWeek} – четвер`
       break
     case 5:
-      document.write(`Ви ввели ${dayOfWeek} – пʼятниця`)
+      showResult = `Ви ввели ${dayOfWeek} – пʼятниця`
       break
     case 6:
-      document.write(`Ви ввели ${dayOfWeek} – субота`)
+      showResult = `Ви ввели ${dayOfWeek} – субота`
       break
     case 7:
-      document.write(`Ви ввели ${dayOfWeek} – неділя`)
+      showResult = `Ви ввели ${dayOfWeek} – неділя`
       break
     default:
-      document.write(`Ви ввели не коректні дані.`)
+      showResult = `Ви ввели не коректні дані.`
       break
   }
+
+  document.write(showResult)
 </script>
 </body>
 </html>

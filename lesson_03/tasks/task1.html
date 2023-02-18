@@ -18,14 +18,16 @@
   const secondChildName = prompt('Введіть імʼя другої дитини')
   const secondChildCandy = parseInt(prompt(`Введіть к-ть цукерок другої дитини (${secondChildName})`, '0'))
 
-  if (firstChildCandy > secondChildCandy) {
-    document.write(`${firstChildName} має більше цукерок`)
-  } else if (secondChildCandy > firstChildCandy) {
-    document.write(`${secondChildName} має більше цукерок`)
-  } else {
-    document.write(`У обох дітей однакова к-ть цукерок`)
-  }
+  let showResult
 
+  if (firstChildCandy > secondChildCandy)
+    showResult = `${firstChildName} має більше цукерок`
+  else if (secondChildCandy > firstChildCandy)
+    showResult = `${secondChildName} має більше цукерок`
+  else
+    showResult = `У обох дітей однакова к-ть цукерок`
+
+  document.write(showResult)
 </script>
 
 </body>

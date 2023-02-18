@@ -14,20 +14,19 @@
 
 <script>
   const personAge = parseInt(prompt('Введіть вік людини'))
+  const child = 6
+  const schoolboy = 18
+  const student = 24
+  const worker = 60
 
-  if (personAge >= 3 && personAge <= 5) {
-    document.write('Дитина у садочку')
-  } else if (personAge >= 6 && personAge <= 17) {
-    document.write('Школяр')
-  } else if (personAge >= 18 && personAge <= 24) {
-    document.write('Школяр')
-  } else if (personAge >= 25 && personAge <= 59) {
-    document.write('Працівник')
-  } else if (personAge >= 60 && personAge <= 80) {
-    document.write('Пенсіонер')
-  } else {
-    document.write(`Пенсіонер або &#129702;`)
-  }
+  let showResult
+  if (personAge < child ) showResult = 'Дитина у садочку'
+  else if (personAge < schoolboy) showResult = 'Школяр'
+  else if (personAge < student) showResult = 'Студент'
+  else if (personAge < worker) showResult = 'Працівник'
+  else showResult = 'Пенсіонер'
+
+  document.write(showResult)
 </script>
 
 </body>
