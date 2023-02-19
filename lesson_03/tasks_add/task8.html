@@ -8,38 +8,34 @@
   <title>Task 6</title>
 </head>
 <body>
-<h1>Задача 6</h1>
-<p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+<h1>Задача 8</h1>
+<p>З клавіатури вводиться кількість сторін багатокутника. Необхідно вивести назву фігури («трикутник»,
+  «чотирикутник», «пʼятикутник», «шестикутник»).
+</p>
 
 <script>
-  const dayOfWeek = parseInt(prompt('Введіть номер дня тижня'))
+  const polygon = parseInt(prompt('Введіть кількість сторін багатокутника'))
 
-  switch (dayOfWeek) {
-    case 1:
-      document.write(`Ви ввели ${dayOfWeek} – понеділок`)
-      break
-    case 2:
-      document.write(`Ви ввели ${dayOfWeek} – вівторок`)
-      break
+  let answer = `Ви ввели ${polygon} - це `
+  switch (polygon) {
     case 3:
-      document.write(`Ви ввели ${dayOfWeek} – середа`)
+      answer += `трикутник`
       break
     case 4:
-      document.write(`Ви ввели ${dayOfWeek} – четвер`)
+      answer += `чотирикутник`
       break
     case 5:
-      document.write(`Ви ввели ${dayOfWeek} – пʼятниця`)
+      answer += `пʼятикутник`
       break
     case 6:
-      document.write(`Ви ввели ${dayOfWeek} – субота`)
-      break
-    case 7:
-      document.write(`Ви ввели ${dayOfWeek} – неділя`)
+      answer += `шестикутник`
       break
     default:
-      document.write(`Ви ввели не коректні дані.`)
+      answer = `Ви ввели неправильні дані`
       break
   }
+
+  document.write(answer)
 </script>
 </body>
 </html>

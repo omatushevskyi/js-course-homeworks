@@ -9,36 +9,59 @@
 </head>
 <body>
 <h1>Задача 7</h1>
-<p>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься</p>
+<p>Гра в кості. Правила гри:</p>
+<ol>
+  <li>користувач може кинути кості не більше двох разів (користувач сам вирішує чи робити, чи не робити другий
+    кидок);
+  </li>
+  <li>якщо випадає парне число, то кількість балів збільшується на це число;</li>
+  <li>якщо випадає непарне число, то кількість балів зменшується на це число;</li>
+  <li>виграє той, у кого кількість балів більша.</li>
+</ol>
 
 <script>
-  const numberOfMonth = parseInt(prompt('Введіть номер місяця'))
+  let player1, player2, dice, score1 = 0, score2 = 0
 
-  switch (numberOfMonth) {
-    case 12:
-    case 1:
-    case 2:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це зима`)
-      break
-    case 3:
-    case 4:
-    case 5:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це весна`)
-      break
-    case 6:
-    case 7:
-    case 8:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це літо`)
-      break
-    case 9:
-    case 10:
-    case 11:
-      document.write(`Ви ввели номер місяця ${numberOfMonth} – це осінь`)
-      break
-    default:
-      document.write(`Ви ввели не коректні дані.`)
-      break
+  player1 = parseInt(prompt('Хід гравця 1.\nНатисніть 1, щоб почати гру і кинути кубик'))
+  if (player1 === 1) {
+    dice = Math.floor(Math.random() * 6) + 1
+
+    if (dice % 2 === 0) score1 += +dice
+    else score1 -= dice
+
+    player1 = parseInt(prompt(`Випало ${dice}. Ваш рахунок: ${score1}.\nНатисніть:\n1 - кинути кубик ще раз\n2 - передати хід гравцю 2`))
+    if (player1 === 1) {
+      dice = Math.floor(Math.random() * 6) + 1
+
+      if (dice % 2 === 0) score1 += +dice
+      else score1 -= dice
+
+      alert(`Випало ${dice}. Ваш рахунок: ${score1}.`)
+    }
   }
+
+  player2 = parseInt(prompt('Хід гравця 2.\nНатисніть 1, щоб кинути кубик'))
+  if (player2 === 1) {
+    dice = Math.floor(Math.random() * 6) + 1
+    if (dice % 2 === 0) score2 += +dice
+    else score2 -= dice
+
+    player2 = parseInt(prompt(`Випало ${dice}. Ваш рахунок: ${score2}.\nНатисніть:\n1 - кинути кубик ще раз\n2 - показати результат`))
+    if (player2 === 1) {
+      dice = Math.floor(Math.random() * 6) + 1
+      if (dice % 2 === 0) score2 += +dice
+      else score2 -= dice
+
+      alert(`Випало ${dice}. Ваш рахунок: ${score2}.`)
+    }
+  }
+
+  let winner, result = `Результат:<br>Гравець 1: ${score1}<br>Гравець 2: ${score2}<br>`
+  if (score1 > score2) winner = `Переміг Гравець 1.`
+  else if (score1 < score2) winner = `Переміг Гравець 2.`
+  else winner = `Нічия.`
+
+  document.write(result, winner)
 </script>
 </body>
 </html>
