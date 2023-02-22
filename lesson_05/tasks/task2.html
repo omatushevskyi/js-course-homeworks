@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Створити 10 елементів для введення цін продуктів
+</p>
+<img src="img/task2.png" alt="task2">
+
+<script>
+  const itemPrice = parseFloat(prompt('Введіть ціну товару', '0.0'))
+  const amountMoney = parseFloat(prompt('Введіть к-ть грошей', '0.0'))
+  const lotteryPrice = 4
+
+  let showResult
+  if ((amountMoney - itemPrice) >= lotteryPrice) showResult = 'Чи бажаєте придбати лотерейний білет?'
+  else if (amountMoney < itemPrice) showResult = 'Відмова - недостатньо коштів'
+  else showResult = 'Оплата пройшла успішно.'
+
+  document.write(showResult)
+</script>
+
+</body>
+</html>

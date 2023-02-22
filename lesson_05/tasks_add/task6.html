@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 6</title>
+</head>
+<body>
+<h1>Задача 6</h1>
+<p>Полювання. Заєць знаходиться у верхньому лівому кутку поля. Поле складається з двох рядків і двох стовпців.</p>
+<img src="./task_add_6.png" alt="">
+<p>За один крок заєць може стрибнути у будь-яку із вільних клітинок. Користувач ставить пастку вказуючи номер рядка
+  і стовпця клітинки. Якщо заєць потрапляє у пастку, то користувач виграв і отримав 100 балів. Якщо користувач
+  зловить зайця за другою спробою, то одержує 50 балів.</p>
+
+<script>
+  let upHarePoint = 1, downHarePoint = 1
+  let upTrapPoint = parseInt(prompt(`Виберіть стовпець пастки:\n1 - стовпець 1 | 2 - стовпець 2`))
+  let downTrapPoint = parseInt(prompt(`Виберіть рядок пастки:\n1 - рядок 1\n2 - рядок 2`))
+
+  upHarePoint = Math.floor(Math.random() * 2) + 1
+  downHarePoint = Math.floor(Math.random() * 2) + 1
+  console.log(upHarePoint, downHarePoint);
+
+  let showResult
+  if (upTrapPoint === upHarePoint && downTrapPoint === downHarePoint)
+    showResult = `Ви впіймали зайця з пергого разу. Ви отримуєте 100 балів`
+  else {
+    upHarePoint = Math.floor(Math.random() * 2) + 1
+    downHarePoint = Math.floor(Math.random() * 2) + 1
+    upTrapPoint = parseInt(prompt(`Спробуйте ще раз\nВиберіть стовпець пастки:\n1 - стовпець 1 | 2 - стовпець 2`))
+    downTrapPoint = parseInt(prompt(`Виберіть рядок пастки:\n1 - рядок 1\n2 - рядок 2`))
+
+    if (upTrapPoint === upHarePoint && downTrapPoint === downHarePoint)
+      showResult = `Ви впіймали зайця з другого разу. Ви отримуєте 50 балів`
+    else
+      showResult = `Вам не вдалось впіймати зайця`
+  }
+
+  document.write(showResult)
+</script>
+</body>
+</html>

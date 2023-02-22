@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>Модифікувати попередню задачу з можливістю після пострілу переміщення корабля у, випадковим чином вибрану сусідню
+  клітинку (якщо звичайно корабель не було потоплено за першим разом).</p>
+
+<script>
+  const numOfSquares = parseInt(prompt('Введіть кількість квадратів'))
+  let shipPosition = Math.floor(Math.random() * numOfSquares) + 1
+  let userShot = parseInt(prompt(`Введіть позицію корабля (1 – ${numOfSquares}), щоб вистрілити ${shipPosition}`))
+  let changePosition, result
+
+  if (userShot === shipPosition)
+    result = 'Вітаю, ви потопили корабель з першого разу'
+
+  else if (userShot === shipPosition - 1 || userShot === shipPosition + 1) {
+    changePosition = Math.round(Math.random()) * 2 - 1
+
+    if (shipPosition === 1) shipPosition++
+    else if (shipPosition === numOfSquares) shipPosition--
+    else shipPosition = shipPosition + changePosition
+
+    userShot = parseInt(prompt(`Ви пошкодили корабель, стріляйте ще раз ${shipPosition}`))
+    if (userShot === shipPosition) result = 'Вітаю, ви потопили корабель за 2 постріли'
+    else result = 'Ви програли!'
+  }
+
+  else {
+    userShot = parseInt(prompt(`Мимо. У вас залишилась одна спроба`))
+    if (userShot !== shipPosition) result = 'Ви програли!'
+  }
+
+  document.write(result)
+</script>
+</body>
+</html>

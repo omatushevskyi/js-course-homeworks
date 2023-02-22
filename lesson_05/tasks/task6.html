@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 6</title>
+</head>
+<body>
+<h1>Задача 6</h1>
+<p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+
+<script>
+  const dayOfWeek = parseInt(prompt('Введіть номер дня тижня'))
+
+  let showResult
+  switch (dayOfWeek) {
+    case 1:
+      showResult = `Ви ввели ${dayOfWeek} – понеділок`
+      break
+    case 2:
+      showResult = `Ви ввели ${dayOfWeek} – вівторок`
+      break
+    case 3:
+      showResult = `Ви ввели ${dayOfWeek} – середа`
+      break
+    case 4:
+      showResult = `Ви ввели ${dayOfWeek} – четвер`
+      break
+    case 5:
+      showResult = `Ви ввели ${dayOfWeek} – пʼятниця`
+      break
+    case 6:
+      showResult = `Ви ввели ${dayOfWeek} – субота`
+      break
+    case 7:
+      showResult = `Ви ввели ${dayOfWeek} – неділя`
+      break
+    default:
+      showResult = `Ви ввели не коректні дані.`
+      break
+  }
+
+  document.write(showResult)
+</script>
+</body>
+</html>

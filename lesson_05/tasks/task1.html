@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Вивести з використанням циклів маркований список з випадковими числами (1-100). Кількість випадкових чисел
+  вводиться користувачем. Приклад:
+</p>
+<ul>
+  <li>12</li>
+  <li>21</li>
+  <li>34</li>
+  <li>51</li>
+</ul>
+
+<script>
+  const randomNumQuantity = parseInt(prompt('Введіть к-ть випадкових чисел'))
+  const min = 1, max = 100
+  let randNum, showResult = ``
+
+  for (let i = 0; i < randomNumQuantity; i++) {
+    randNum = Math.floor(Math.random() * (max - min + 1)) + min
+    showResult += `<li>${randNum}</li>`
+  }
+
+  document.write(`Ви ввели ${randomNumQuantity}: <ul>${showResult}</ul>`)
+</script>
+
+</body>
+</html>
