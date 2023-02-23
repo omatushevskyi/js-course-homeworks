@@ -9,40 +9,33 @@
 </head>
 <body>
 <h1>Задача 6</h1>
-<p>З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+<p>
+  Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+</p>
+<img src="../img/task6.png" alt="">
 
 <script>
-  const dayOfWeek = parseInt(prompt('Введіть номер дня тижня'))
+  const row = 3, col = 3, tabs = 3
+  const style = `border = 1 style="display: inline-block"`
+  let tableRow = `<br>`
+  let numbers = 1
 
-  let showResult
-  switch (dayOfWeek) {
-    case 1:
-      showResult = `Ви ввели ${dayOfWeek} – понеділок`
-      break
-    case 2:
-      showResult = `Ви ввели ${dayOfWeek} – вівторок`
-      break
-    case 3:
-      showResult = `Ви ввели ${dayOfWeek} – середа`
-      break
-    case 4:
-      showResult = `Ви ввели ${dayOfWeek} – четвер`
-      break
-    case 5:
-      showResult = `Ви ввели ${dayOfWeek} – пʼятниця`
-      break
-    case 6:
-      showResult = `Ви ввели ${dayOfWeek} – субота`
-      break
-    case 7:
-      showResult = `Ви ввели ${dayOfWeek} – неділя`
-      break
-    default:
-      showResult = `Ви ввели не коректні дані.`
-      break
+  for (let t = 0; t < tabs; t++) {
+    tableRow += `<table ${style}>`
+
+    for (let i = 0; i < row; i++) {
+      tableRow += `<tr>`
+
+      for (let j = 0; j < col; j++) {
+        tableRow += `<td>${numbers}</td>`
+        numbers++
+      }
+      tableRow += `</tr>`
+    }
+    tableRow += `</table> &emsp; &emsp;`
   }
 
-  document.write(showResult)
+  document.write(tableRow)
 </script>
 </body>
 </html>

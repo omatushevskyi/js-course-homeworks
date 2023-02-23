@@ -9,25 +9,25 @@
 </head>
 <body>
 <h1>Задача 3</h1>
-<p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</p>
+<p>
+  Вивести таблицю з одним рядком і 7 стовпцями.
+</p>
+<img src="../img/task3.png" alt="">
 
 <script>
-  const randNum = Math.floor(Math.random() * 5) + 1
-  let userNum = parseInt(prompt('Вгадайте число за 2 спроби. Введіть від 1 до 5'))
+  const row = 1, col = 7
+  let tableRow = `<table border = 1>`
 
-  let showResult
-
-  if (userNum === randNum)
-    showResult = `Вітаю! Ви вгадали число з першого разу`
-  else {
-    userNum = parseInt(prompt('Ви не вгадали число. Спробуйте ще один раз.'))
-    if (userNum === randNum)
-      showResult = `Вітаю! Ви вгадали число з другого разу`
-    else
-      showResult = `Програш. Вам не вдалось вгадали число за 2 спроби.`
+  for (let i = 0; i < row; i++) {
+    tableRow += `<tr>`
+    for (let j = 0; j < col; j++) {
+      tableRow += `<td>${j+1}</td>`
+    }
+    tableRow += `</tr>`
   }
 
-  document.write(showResult)
+  tableRow += `</table>`
+  document.write(tableRow)
 </script>
 
 </body>

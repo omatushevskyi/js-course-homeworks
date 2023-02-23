@@ -12,19 +12,17 @@
 <p>
   Створити 10 елементів для введення цін продуктів
 </p>
-<img src="img/task2.png" alt="task2">
+<img src="../img/task2.png" alt="task2">
 
 <script>
-  const itemPrice = parseFloat(prompt('Введіть ціну товару', '0.0'))
-  const amountMoney = parseFloat(prompt('Введіть к-ть грошей', '0.0'))
-  const lotteryPrice = 4
+  const numElem = 10
+  let showRes = ``
 
-  let showResult
-  if ((amountMoney - itemPrice) >= lotteryPrice) showResult = 'Чи бажаєте придбати лотерейний білет?'
-  else if (amountMoney < itemPrice) showResult = 'Відмова - недостатньо коштів'
-  else showResult = 'Оплата пройшла успішно.'
+  for (let i = 0; i < numElem; i++){
+    showRes += `<br>Product # ${i+1} <input type="text"><br>`
+  }
 
-  document.write(showResult)
+  document.write(showRes)
 </script>
 
 </body>
