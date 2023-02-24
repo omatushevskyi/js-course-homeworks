@@ -5,16 +5,32 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task 8</title>
+  <title>Task 11</title>
 </head>
 <body>
-<h1>Задача 8</h1>
+<h1>Задача 11</h1>
 <p>
-
+  Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами.
 </p>
 
 <script>
+  let minNumber = parseInt(prompt('Введіть початок діапазону'))
+  let maxNumber = parseInt(prompt('Введіть кінець діапазону'))
 
+  if (minNumber > maxNumber) {
+    const temp = minNumber
+    minNumber = maxNumber
+    maxNumber = temp
+  }
+
+  let sum = 0, oddNumCounter = 0
+  for (let i = minNumber; i <= maxNumber; i++) {
+    if (i % 2 !== 0 && oddNumCounter < 5){
+      sum += i
+      oddNumCounter++
+    }
+  }
+  document.write(`Сума непарних чисел в діапазоні ${minNumber}-${maxNumber} дорівнює ${sum}. ${oddNumCounter}`)
 </script>
 </body>
 </html>

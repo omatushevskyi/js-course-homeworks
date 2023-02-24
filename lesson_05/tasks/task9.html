@@ -5,16 +5,34 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task 8</title>
+  <title>Task 9</title>
 </head>
 <body>
-<h1>Задача 8</h1>
+<h1>Задача 9</h1>
 <p>
-
+  Користувач загадує число. Комп'ютер ставить питання поки не вгадає число користувача (використати confirm).
 </p>
 
 <script>
+  let min = 1, max = 100
+  const userNumber = parseInt(prompt(`Загадайте число (${min}-${max}), яке компʼютер повинен вгадати`))
 
+  let randomNum = Math.floor(Math.random() * (max - min + 1)) + min
+  let tries = 1, showResult
+
+  while (!confirm(`Спроба ${tries} (${min}-${max}).\nВи загадали ${randomNum}?\nOk - так\nCancel - ні`)) {
+    tries++
+
+    if (confirm(`"Ваше число" > ${randomNum} - Ok\n"Ваше число" < ${randomNum} - Cancel`))
+      min = randomNum + 1
+    else
+      max = randomNum - 1
+
+    randomNum = Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
+  showResult = `Ви загадали ${userNumber}.<br>Число компʼютера ${randomNum}<br>Компʼютер вгадав Ваше число з ${tries} разу.`
+  document.write(showResult)
 </script>
 </body>
 </html>

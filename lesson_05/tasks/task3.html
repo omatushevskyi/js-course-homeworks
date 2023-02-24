@@ -15,19 +15,17 @@
 <img src="../img/task3.png" alt="">
 
 <script>
-  const row = 1, col = 7
-  let tableRow = `<table border = 1>`
+  const colNum = 7
+  let table = `<table border = 1><tr>`
 
-  for (let i = 0; i < row; i++) {
-    tableRow += `<tr>`
-    for (let j = 0; j < col; j++) {
-      tableRow += `<td>${j+1}</td>`
-    }
-    tableRow += `</tr>`
+  let num = 1
+  while (num <= colNum) {
+    table += `<td>${num}</td>`
+    num++
   }
 
-  tableRow += `</table>`
-  document.write(tableRow)
+  table += `</tr></table>`
+  document.write(table)
 </script>
 
 </body>

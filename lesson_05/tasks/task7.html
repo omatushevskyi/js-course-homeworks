@@ -9,38 +9,25 @@
 </head>
 <body>
 <h1>Задача 7</h1>
-<p>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься</p>
+<p>
+  Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+</p>
+<img src="../img/task7.png" alt="">
 
 <script>
-  const numberOfMonth = parseInt(prompt('Введіть номер місяця'))
+  const parNum = parseInt(prompt('Введіть кількість параграфів'))
+  let textParagraph = ``
 
-  switch (numberOfMonth) {
-    case 12:
-    case 1:
-    case 2:
-      showResult = `Ви ввели номер місяця ${numberOfMonth} – це зима`
-      break
-    case 3:
-    case 4:
-    case 5:
-      showResult = `Ви ввели номер місяця ${numberOfMonth} – це весна`
-      break
-    case 6:
-    case 7:
-    case 8:
-      showResult = `Ви ввели номер місяця ${numberOfMonth} – це літо`
-      break
-    case 9:
-    case 10:
-    case 11:
-      showResult = `Ви ввели номер місяця ${numberOfMonth} – це осінь`
-      break
-    default:
-      showResult = `Ви ввели не коректні дані.`
-      break
+  for (let i = 0; i < parNum; i++) {
+    textParagraph += `<h1>Заголовок ${i+1}</h1>`
+
+    for (let j = 0; j <= i; j++) {
+      textParagraph += `<p>Розділ ${i+1}, параграф ${j+1}</p>`
+    }
+    textParagraph += `<hr>`
   }
 
-  document.write(showResult)
+  document.write(textParagraph)
 </script>
 </body>
 </html>
