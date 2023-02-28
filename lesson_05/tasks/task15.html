@@ -5,16 +5,25 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task 8</title>
+  <title>Task 15</title>
 </head>
 <body>
-<h1>Задача 8</h1>
+<h1>Задача 15</h1>
 <p>
-
+  Користувача поступово вводить показники температури протягом року. Знайти середню температуру.
 </p>
 
 <script>
+  const amountOfMonths = 12
+  let sumOfTemp = 0
 
+  for (let month = 1; month <= amountOfMonths; month++) {
+    const tempFromUser = parseFloat(prompt(`Введіть температуру ${month}-го місяця`))
+    sumOfTemp += tempFromUser
+  }
+
+  const avgTempOfYear = (sumOfTemp / amountOfMonths).toFixed(1)
+  document.write(`Середня температура за рік ${avgTempOfYear} &deg;C`)
 </script>
 </body>
 </html>

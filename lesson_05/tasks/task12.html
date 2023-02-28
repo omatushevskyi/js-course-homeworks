@@ -5,16 +5,53 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task 8</title>
+  <title>Task 12</title>
 </head>
 <body>
-<h1>Задача 8</h1>
+<h1>Задача 12</h1>
 <p>
-
+  Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з
+  чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, три
+  других – 200 грн, три третіх – 500 грн, три четвертих зображення – 1000 грн). Використати цикли та switch (для вибору
+  зображення за номером).
 </p>
+<img width="" src="../img/task12.png" alt="">
+<br>
 
 <script>
+  const width = `width="200"`
+  const min = 1, max = 4, imageNumber = 3
+  let imgCount1 = 0, imgCount2 = 0, imgCount3 = 0, imgCount4 = 0
+  let showImages = ``, prize = `На жаль, ви нічого не виграли`
 
+  for (let i = 0; i < imageNumber; i++) {
+    const randImg = Math.floor(Math.random() * (max - min + 1)) + min
+
+    switch (randImg) {
+      case 1:
+        showImages += `<img ${width} src="img-task-12/img${randImg}.jpg" alt="">`
+        imgCount1++
+        if (imgCount1 === 3) prize = `Ви виграли 100 грн.`
+        break
+      case 2:
+        showImages += `<img ${width} src="img-task-12/img${randImg}.jpg" alt="">`
+        imgCount2++
+        if (imgCount2 === 3) prize = `Ви виграли 200 грн.`
+        break
+      case 3:
+        showImages += `<img ${width} src="img-task-12/img${randImg}.jpg" alt="">`
+        imgCount3++
+        if (imgCount3 === 3) prize = `Ви виграли 500 грн.`
+        break
+      case 4:
+        showImages += `<img ${width} src="img-task-12/img${randImg}.jpg" alt="">`
+        imgCount4++
+        if (imgCount4 === 3) prize = `Ви виграли 1000 грн.`
+        break
+    }
+  }
+
+  document.write(`${showImages}<h1>${prize}</h1>`)
 </script>
 </body>
 </html>

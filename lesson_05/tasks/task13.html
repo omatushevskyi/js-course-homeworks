@@ -5,16 +5,49 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Task 8</title>
+  <title>Task 13</title>
 </head>
 <body>
-<h1>Задача 8</h1>
+<h1>Задача 13</h1>
 <p>
-
+  Морський бій. Компʼютер випадково розташовує одинарний корабель на полі розміром N*M.
+  Маючи К снарядів користувач намагається потопити корабель.
 </p>
 
 <script>
+  // Мінімальна і максимальна к-ть клітинок
+  const min = 5, max = 20
+  // Генерація поля розміром NxM
+  const N = Math.floor(Math.random() * (max - min + 1)) + min
+  const M = Math.floor(Math.random() * (max - min + 1)) + min
+  // Розміщення корабля в межах поля
+  const shipCordX = Math.floor(Math.random() * (N - min + 1)) + min
+  const shipCordY = Math.floor(Math.random() * (M - min + 1)) + min
+  // Кількість пострілів
+  const K = 5
 
+  console.log(`Корабель: x = ${shipCordX} y = ${shipCordY}`)
+
+  alert(`Створено поле з шириною ${N} та висотою ${M} клітинок.\nУ Вас є ${K} пострілів`)
+
+  let shotX, shotY, shots = 0
+  let result = ``
+  do {
+    shotX = parseInt(prompt(`Введіть номер стовпця 1 - ${N}`))
+    shotY = parseInt(prompt(`Введіть номер рядка 1 - ${M}`))
+    shots++
+
+    if (shipCordX === shotX && shipCordY === shotY) {
+      result = `Ви потопили корабель з ${shots} разу.`
+      break
+    } else if (shots === K) {
+      result = `На жаль, Вам не вдалось потопити корабель`
+      break
+    }
+    alert(`Ви не влучили. Залишилось пострілів ${K - shots}`)
+  } while (shots < K)
+
+  document.write(result)
 </script>
 </body>
 </html>
