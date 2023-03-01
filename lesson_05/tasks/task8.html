@@ -17,16 +17,16 @@
   const userNumber = parseInt(prompt('Загадайте число (1-10), яке компʼютер повинен вгадати'))
   const numOfTries = 3
 
-  let randomNum,
-    tries = 0,
-    showResult = `Компʼютеру не вдалось вгадати ваше число за 3 спроби`
+  let tries = 0
+  let showResult = `Компʼютеру не вдалось вгадати ваше число за 3 спроби`
 
   do {
     tries++
-    randomNum = Math.floor(Math.random() * 10) + 1
-    if (confirm(`Спроба № ${tries}. Ви загадали ${randomNum}?`))
+    const randomNum = Math.floor(Math.random() * 10) + 1
+    if (confirm(`Спроба № ${tries}. Ви загадали ${randomNum}?`)){
       showResult = `Компʼютер вгадав Ваше число з ${tries} разу. Ви загадали ${userNumber}`
-
+      break
+    }
   } while (tries < numOfTries)
 
   document.write(showResult)
