@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 3</title>
+</head>
+<body>
+<h1>Задача 3</h1>
+<p>Комп’ютер загадує число від 1 до 10. Двоє користувачів надають свої відповіді. Виграє той, у кого число
+  знаходиться ближче до загаданого комп’ютером числа.
+</p>
+
+<script>
+  const randNum = Math.floor(Math.random() * 10) + 1
+  const firstUserNum = parseInt(prompt('Гравець 1, Введіть число від 1 до 10'))
+  const secondUserNum = parseInt(prompt('Гравець 2, Введіть число від 1 до 10'))
+  let diffOne, diffTwo, showResult
+
+  // if (randNum < firstUserNum) diffOne = firstUserNum - randNum
+  // else diffOne = randNum - firstUserNum
+  //
+  // if (randNum < secondUserNum) diffTwo = secondUserNum - randNum
+  // else diffTwo = randNum - secondUserNum
+
+  diffOne = Math.abs(randNum - firstUserNum)
+  diffTwo = Math.abs(randNum - secondUserNum)
+
+  if (diffOne < diffTwo) showResult = `Гравець 1 виграв! Число ${firstUserNum} ближче до ${randNum} ніж ${secondUserNum}`
+  else showResult = `Гравець 2 виграв! Число ${secondUserNum} ближче до ${randNum} ніж ${firstUserNum}`
+
+  console.log(randNum, firstUserNum, secondUserNum, diffOne, diffTwo)
+  document.write(showResult)
+</script>
+
+</body>
+</html>

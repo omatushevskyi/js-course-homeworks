@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>На екран виводиться меню:
+  <br>1. Веселий
+  <br>2. Сумний
+  <br>3. Обурений
+  <br>
+  <br>Користувач вводить номер пункту меню і на екрані з’являється відповідне зображення смайла.
+</p>
+
+<script>
+  const menuItem = parseInt(prompt(`Виберіть пункт меню\n1. Веселий\n2.Сумний\n3.Обурений`))
+
+  let showEmoji
+  switch (menuItem) {
+    case 1:
+      showEmoji = `<h1>&#128512;</h1>`
+      break
+    case 2:
+      showEmoji = `<h1>&#128546;</h1>`
+      break
+    case 3:
+      showEmoji = `<h1>&#128545;</h1>`
+      break
+    default:
+      showEmoji = 'Ви ввели некоректні дані'
+      break
+  }
+
+  document.write(showEmoji)
+</script>
+
+</body>
+</html>

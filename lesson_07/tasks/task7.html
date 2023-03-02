@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 7</title>
+</head>
+<body>
+<h1>Задача 7</h1>
+<p>
+  Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+</p>
+<img src="../img/task7.png" alt="">
+
+<script>
+  const parNum = parseInt(prompt('Введіть кількість параграфів'))
+  let textParagraph = ``
+
+  for (let i = 0; i < parNum; i++) {
+    textParagraph += `<h1>Заголовок ${i+1}</h1>`
+    for (let j = 0; j <= i; j++) {
+      textParagraph += `<p>Розділ ${i+1}, параграф ${j+1}</p>`
+    }
+    textParagraph += `<hr>`
+  }
+
+  document.write(textParagraph)
+</script>
+</body>
+</html>
