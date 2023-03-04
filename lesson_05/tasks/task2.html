@@ -16,10 +16,10 @@
 
 <script>
   const numElem = 10
-  let showRes = ``
+  let showRes = `<br>`
 
   for (let i = 0; i < numElem; i++){
-    showRes += `<br>Product # ${i+1} <input type="text"><br>`
+    showRes += `<label for="product">Product # ${i+1}</label><input type="text" name="product"><br>`
   }
 
   document.write(showRes)
