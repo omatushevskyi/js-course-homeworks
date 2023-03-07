@@ -10,24 +10,37 @@
 <body>
 <h1>Задача 10</h1>
 <p>
-  Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.
+  Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для додатних
+  показів температури.
 </p>
 
 <script>
-  let minNumber = parseInt(prompt('Введіть початок діапазону'))
-  let maxNumber = parseInt(prompt('Введіть кінець діапазону'))
+  function getRandomFloat (min, max, decimals) {
+    const randStr = (Math.random() * (max - min) + min).toFixed(decimals)
 
-  if (minNumber > maxNumber) {
-    const temp = minNumber
-    minNumber = maxNumber
-    maxNumber = temp
+    return parseFloat(randStr)
+  }
+  function getAvgValueOfPositiveTemperatures(temp1, temp2, temp3, temp4) {
+    let positiveTempsCounter = 0, sumOfPositiveTemps = 0
+
+    for (let i = 0; i < arguments.length; i++){
+      if (arguments[i] > 0){
+        positiveTempsCounter++
+        sumOfPositiveTemps += arguments[i]
+      }
+    }
+
+    return (sumOfPositiveTemps / positiveTempsCounter) || 0
   }
 
-  let sum = 0
-  for (let i = minNumber; i <= maxNumber; i++)
-    if (i % 2 !== 0) sum += i
+  const minR = -89.2, maxR = 56.7
+  const temp1 = getRandomFloat(minR, maxR, 1)
+  const temp2 = getRandomFloat(minR, maxR, 1)
+  const temp3 = getRandomFloat(minR, maxR, 1)
+  const temp4 = getRandomFloat(minR, maxR, 1)
 
-  document.write(`Сума непарних чисел в діапазоні ${minNumber}-${maxNumber} дорівнює ${sum}`)
+  const avgValueOfTemp = getAvgValueOfPositiveTemperatures(temp1, temp2, temp3, temp4)
+  document.write(`Середнє значення для додатних показів температури: ${avgValueOfTemp.toFixed(1)}`)
 </script>
 </body>
 </html>

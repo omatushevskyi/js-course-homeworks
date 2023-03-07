@@ -10,29 +10,37 @@
 <body>
 <h1>Задача 9</h1>
 <p>
-  Користувач загадує число. Комп'ютер ставить питання поки не вгадає число користувача (використати confirm).
+  Дано покази температур (довільна кількість). Розробити функцію, яка дозволить підрахувати кількість від’ємних показів
+  температури.
 </p>
 
 <script>
-  let min = 1, max = 100
-  const userNumber = parseInt(prompt(`Загадайте число (${min}-${max}), яке компʼютер повинен вгадати`))
+  function getRandomFloat (min, max, decimals) {
+    const randStr = (Math.random() * (max - min) + min).toFixed(decimals)
 
-  let randomNum = Math.floor(Math.random() * (max - min + 1)) + min
-  let tries = 1, showResult
-
-  while (!confirm(`Спроба ${tries} (${min}-${max}).\nВи загадали ${randomNum}?\nOk - так\nCancel - ні`)) {
-    tries++
-
-    if (confirm(`"Ваше число" > ${randomNum} - Ok\n"Ваше число" < ${randomNum} - Cancel`))
-      min = randomNum + 1
-    else
-      max = randomNum - 1
-
-    randomNum = Math.floor(Math.random() * (max - min + 1)) + min
+    return parseFloat(randStr)
   }
 
-  showResult = `Ви загадали ${userNumber}.<br>Число компʼютера ${randomNum}<br>Компʼютер вгадав Ваше число з ${tries} разу.`
-  document.write(showResult)
+  function getNumberOfNegativeTemperatures(temp1, temp2, temp3, temp4) {
+    let negativeTempsCounter = 0
+
+    for (let i = 0; i < arguments.length; i++)
+      if (arguments[i] < 0) negativeTempsCounter++
+
+    return negativeTempsCounter
+  }
+
+  const minR = -89.2, maxR = 56.7
+  const temp1 = getRandomFloat(minR, maxR, 1)
+  const temp2 = getRandomFloat(minR, maxR, 1)
+  const temp3 = getRandomFloat(minR, maxR, 1)
+  const temp4 = getRandomFloat(minR, maxR, 1)
+
+  const negativeTempsCounter = getNumberOfNegativeTemperatures(temp1, temp2, temp3, temp4)
+
+  document.write(`Рандомні покази температури: ${temp1}, ${temp2}, ${temp3}, ${temp4}<br>`)
+  document.write(`Кількість від’ємних показів температури: ${negativeTempsCounter}`)
 </script>
+
 </body>
 </html>

@@ -10,26 +10,39 @@
 <body>
 <h1>Задача 5</h1>
 <p>
-  Вивести таблицю
+  Створити окремі функції, які переводять:
+  <br>1) Сантиметри у дюйми;
+  <br>2) Кілограми у фунти;
+  <br>3) Кілометри у милі.
 </p>
-<img src="../img/task5.png" alt="">
 
 <script>
-  const row = 3, col = 3
-  let tableRow = `<table border = 1>`
-  let numbers = 1
-
-  for (let i = 0; i < row; i++) {
-    tableRow += `<tr>`
-    for (let j = 0; j < col; j++) {
-      tableRow += `<td>${numbers}</td>`
-      numbers++
-    }
-    tableRow += `</tr>`
+  function cmToInch (numCm) {
+    const oneCmInInches = 0.393700787
+    return numCm * oneCmInInches
   }
 
-  tableRow += `</table>`
-  document.write(tableRow)
+  function kgToPound (numKg) {
+    const oneKgInPounds = 2.20462262
+    return numKg * oneKgInPounds
+  }
+
+  function kmToMile (numKm) {
+    const oneKmInMiles = 0.621371192
+    return numKm * oneKmInMiles
+  }
+
+  const minR = 1, maxR= 100
+  const randNum = minR + Math.random() * (maxR - minR)
+
+  const inches = cmToInch(randNum)
+  const pounds = kgToPound(randNum)
+  const miles = kmToMile(randNum)
+
+  document.write(`${randNum.toFixed(2)} cm = ${inches.toFixed(2)} in<br>`)
+  document.write(`${randNum.toFixed(2)} kg = ${pounds.toFixed(2)} lb<br>`)
+  document.write(`${randNum.toFixed(2)} km = ${miles.toFixed(2)} mi.<br>`)
+
 </script>
 </body>
 </html>

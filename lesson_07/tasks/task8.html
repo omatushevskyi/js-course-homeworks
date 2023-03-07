@@ -10,26 +10,24 @@
 <body>
 <h1>Задача 8</h1>
 <p>
-  Користувач загадує число. За 3 спроби комп’ютер намагається вгадати число користувача (використати confirm).
+  Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди переходимо
+  при кліку на зображення (тег img повине знаходитись у середині тега a: &lt;a&gt; &lt;img src=”шлях”&gt; &lt;/a&gt;
+  <!--  <a> <img src=”шлях”> </a>-->
 </p>
 
+
 <script>
-  const userNumber = parseInt(prompt('Загадайте число (1-10), яке компʼютер повинен вгадати'))
-  const numOfTries = 3
+  function showBanner(img, header, link) {
+    let banner = `<h2>${header}</h2><a href=${link}>${img}</a>`
+    return banner
+  }
 
-  let tries = 0
-  let showResult = `Компʼютеру не вдалось вгадати ваше число за 3 спроби`
+  const userImage = `<img height="256" src="img-task-8/task7.png" alt="img">`
+  const userLink = `https://github.com`
+  const userHeader = `GitHub`
 
-  do {
-    tries++
-    const randomNum = Math.floor(Math.random() * 10) + 1
-    if (confirm(`Спроба № ${tries}. Ви загадали ${randomNum}?`)){
-      showResult = `Компʼютер вгадав Ваше число з ${tries} разу. Ви загадали ${userNumber}`
-      break
-    }
-  } while (tries < numOfTries)
-
-  document.write(showResult)
+  const userBanner = showBanner(userImage, userHeader, userLink)
+  document.write(userBanner)
 </script>
 </body>
 </html>

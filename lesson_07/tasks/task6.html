@@ -10,32 +10,33 @@
 <body>
 <h1>Задача 6</h1>
 <p>
-  Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+  Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
+  фіксованим повідомленням).
 </p>
-<img src="../img/task6.png" alt="">
 
 <script>
-  const row = 3, col = 3, tabs = 3
-  const style = `border = 1 style="display: inline-block"`
-  let tableRow = `<br>`
-  let numbers = 1
+  function createTable(rows, cols, data) {
+    let table = `<table border=1px><tbody>`
 
-  for (let t = 0; t < tabs; t++) {
-    tableRow += `<table ${style}>`
-
-    for (let i = 0; i < row; i++) {
-      tableRow += `<tr>`
-
-      for (let j = 0; j < col; j++) {
-        tableRow += `<td>${numbers}</td>`
-        numbers++
+    for (let i = 0; i < rows; i++) {
+      table += `<tr>`
+      for (let j = 0; j < cols; j++) {
+        table += `<td>${data}</td>`
       }
-      tableRow += `</tr>`
+      table += `</tr>`
     }
-    tableRow += `</table> &emsp; &emsp;`
+    table += `</tbody></table>`
+    
+    return table
   }
 
-  document.write(tableRow)
+  const tableRows = parseInt(prompt('Введіть кількість рядків таблиці'))
+  const tableCols = parseInt(prompt('Введіть кількість стовпців таблиці'))
+  const tableData = prompt('Введіть текст, для заповнення таблиці')
+
+  const userTable = createTable(tableRows, tableCols, tableData)
+
+  document.write(userTable)
 </script>
 </body>
 </html>
