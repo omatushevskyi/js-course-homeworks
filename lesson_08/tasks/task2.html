@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Створити функцію, яка за номером дня дозволяє зʼясувати чи є цей день робочим.
+</p>
+
+<script>
+  function isWorkday(dayNum) {
+    let day = ''
+    if (dayNum >= 1 && dayNum <= 5) day = 'Це робочий день тижня'
+    else if (dayNum <= 7) day = 'Це вихідний день тижня'
+    else day = 'Немає такого дня'
+
+    return day
+  }
+
+  let whatDay = isWorkday(1)
+  document.write(whatDay)
+</script>
+</body>
+</html>

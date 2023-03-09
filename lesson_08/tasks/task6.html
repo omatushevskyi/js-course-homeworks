@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 6</title>
+</head>
+<body>
+<h1>Задача 6</h1>
+<p>
+  Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
+  фіксованим повідомленням).
+</p>
+
+<script>
+  function createTable(rows, cols, data) {
+    let table = `<table border=1px><tbody>`
+
+    for (let i = 0; i < rows; i++) {
+      table += `<tr>`
+      for (let j = 0; j < cols; j++) {
+        table += `<td>${data}</td>`
+      }
+      table += `</tr>`
+    }
+    table += `</tbody></table>`
+    
+    return table
+  }
+
+  const tableRows = parseInt(prompt('Введіть кількість рядків таблиці'))
+  const tableCols = parseInt(prompt('Введіть кількість стовпців таблиці'))
+  const tableData = prompt('Введіть текст, для заповнення таблиці')
+
+  const userTable = createTable(tableRows, tableCols, tableData)
+
+  document.write(userTable)
+</script>
+</body>
+</html>

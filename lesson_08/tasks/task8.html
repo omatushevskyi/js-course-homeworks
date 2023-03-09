@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 8</title>
+</head>
+<body>
+<h1>Задача 8</h1>
+<p>
+  Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди переходимо
+  при кліку на зображення (тег img повине знаходитись у середині тега a: &lt;a&gt; &lt;img src=”шлях”&gt; &lt;/a&gt;
+  <!--  <a> <img src=”шлях”> </a>-->
+</p>
+
+
+<script>
+  function showBanner(img, header, link) {
+    let banner = `<h2>${header}</h2><a href=${link}>${img}</a>`
+    return banner
+  }
+
+  const bannerImage = `<img height="256" src="img-task-8/task7.png" alt="img">`
+  const bannerHeader = `GitHub`
+  const bannerLink = `https://github.com`
+
+  const userBanner = showBanner(bannerImage, bannerHeader, bannerLink)
+  document.write(userBanner)
+</script>
+</body>
+</html>

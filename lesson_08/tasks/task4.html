@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 4</title>
+</head>
+<body>
+<h1>Задача 4</h1>
+<p>
+  Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів:
+  кількість парних, кількість додатних, кількість більших за 100.
+</p>
+
+<script>
+  function universalFunc(...numbers) {
+    let countEvenNum = 0
+    let countPositiveNum = 0
+    let countOver100 = 0
+
+    for (let i = 0; i < numbers.length; i++){
+      if (numbers[i] % 2 === 0) countEvenNum++
+      if (numbers[i] > 0) countPositiveNum++
+      if (numbers[i] > 100) countOver100++
+    }
+    // return `Парних: ${countEvenNum}<br>Додатних: ${countPositiveNum}<br> Більших від 100: ${countOver100}`
+    return [countEvenNum, countPositiveNum, countOver100]
+  }
+
+  const minR = -200, maxR = 200
+  const num1 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
+  const num2 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
+  const num3 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
+
+  const showResult = universalFunc(num1, num2, num3)
+  document.write(`Числа: ${num1}, ${num2}, ${num3}<br>`)
+  document.write(`Парних: ${showResult[0]}<br>Додатних: ${showResult[1]}<br> Більших від 100: ${showResult[2]}`)
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Створити функцію, яка за номером місяця повертає його назву.
+</p>
+
+<script>
+  function getMothName (numOfMonth) {
+    let month = ''
+    switch (numOfMonth) {
+      case 12:
+        month = 'Грудень'
+        break
+      case 1:
+        month = 'Січень'
+        break
+      case 2:
+        month = 'Лютий'
+        break
+      case 3:
+        month = 'Березень'
+        break
+      case 4:
+        month = 'Квітень'
+        break
+      case 5:
+        month = 'Травель'
+        break
+      case 6:
+        month = 'Червень'
+        break
+      case 7:
+        month = 'Липень'
+        break
+      case 8:
+        month = 'Серпень'
+        break
+      case 9:
+        month = 'Вересень'
+        break
+      case 10:
+        month = 'Жовтень'
+        break
+      case 11:
+        month = 'Листопад'
+        break
+      default:
+        month = 'Такого місяця не існує'
+        break
+    }
+    return month
+  }
+
+  let monthName = getMothName(4)
+  document.write(monthName)
+</script>
+
+</body>
+</html>
