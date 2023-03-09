@@ -16,16 +16,16 @@
 
 <script>
   function getRandomFloat (min, max, decimals) {
-    const randStr = (Math.random() * (max - min) + min).toFixed(decimals)
+    const randFloatNum = (Math.random() * (max - min) + min).toFixed(decimals)
 
-    return parseFloat(randStr)
+    return parseFloat(randFloatNum)
   }
 
-  function getNumberOfNegativeTemperatures(temp1, temp2, temp3, temp4) {
+  function getNumberOfNegativeTemperatures(...temperatures) {
     let negativeTempsCounter = 0
 
-    for (let i = 0; i < arguments.length; i++)
-      if (arguments[i] < 0) negativeTempsCounter++
+    for (let i = 0; i < temperatures.length; i++)
+      if (temperatures[i] < 0) negativeTempsCounter++
 
     return negativeTempsCounter
   }
@@ -38,7 +38,7 @@
 
   const negativeTempsCounter = getNumberOfNegativeTemperatures(temp1, temp2, temp3, temp4)
 
-  document.write(`Рандомні покази температури: ${temp1}, ${temp2}, ${temp3}, ${temp4}<br>`)
+  document.write(`Рандомні покази температур: ${temp1}, ${temp2}, ${temp3}, ${temp4}<br>`)
   document.write(`Кількість від’ємних показів температури: ${negativeTempsCounter}`)
 </script>
 

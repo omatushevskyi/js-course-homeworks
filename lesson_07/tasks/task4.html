@@ -15,30 +15,18 @@
 </p>
 
 <script>
-  function universalFunc(num1, num2, num3) {
+  function universalFunc(...numbers) {
     let countEvenNum = 0
     let countPositiveNum = 0
     let countOver100 = 0
 
-    // Без використання псевдо масиву arguments
-    // let temp = num1
-    // for (let i = 0; i < 3; i++){
-    //   if (i === 1) temp = num2
-    //   else if (i === 2) temp = num3
-    //
-    //   if (temp % 2 === 0) countEvenNum++
-    //   if (temp > 0) countPositiveNum++
-    //   if (temp > 100) countOver100++
-    // }
-
-    for (let i = 0; i < arguments.length; i++){
-      if (arguments[i] % 2 === 0) countEvenNum++
-      if (arguments[i] > 0) countPositiveNum++
-      if (arguments[i] > 100) countOver100++
+    for (let i = 0; i < numbers.length; i++){
+      if (numbers[i] % 2 === 0) countEvenNum++
+      if (numbers[i] > 0) countPositiveNum++
+      if (numbers[i] > 100) countOver100++
     }
-
-    let result = `Парних: ${countEvenNum}<br>Додатних: ${countPositiveNum}<br> Більших від 100: ${countOver100}`
-    return result
+    // return `Парних: ${countEvenNum}<br>Додатних: ${countPositiveNum}<br> Більших від 100: ${countOver100}`
+    return [countEvenNum, countPositiveNum, countOver100]
   }
 
   const minR = -200, maxR = 200
@@ -47,7 +35,8 @@
   const num3 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
 
   const showResult = universalFunc(num1, num2, num3)
-  document.write(`Числа: ${num1}, ${num2}, ${num3}<br>${showResult}`)
+  document.write(`Числа: ${num1}, ${num2}, ${num3}<br>`)
+  document.write(`Парних: ${showResult[0]}<br>Додатних: ${showResult[1]}<br> Більших від 100: ${showResult[2]}`)
 </script>
 </body>
 </html>

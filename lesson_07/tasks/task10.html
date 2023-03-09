@@ -20,13 +20,13 @@
 
     return parseFloat(randStr)
   }
-  function getAvgValueOfPositiveTemperatures(temp1, temp2, temp3, temp4) {
+  function getAvgValueOfPositiveTemperatures(...temperatures) {
     let positiveTempsCounter = 0, sumOfPositiveTemps = 0
 
-    for (let i = 0; i < arguments.length; i++){
-      if (arguments[i] > 0){
+    for (let i = 0; i < temperatures.length; i++){
+      if (temperatures[i] > 0){
         positiveTempsCounter++
-        sumOfPositiveTemps += arguments[i]
+        sumOfPositiveTemps += temperatures[i]
       }
     }
 
@@ -40,6 +40,8 @@
   const temp4 = getRandomFloat(minR, maxR, 1)
 
   const avgValueOfTemp = getAvgValueOfPositiveTemperatures(temp1, temp2, temp3, temp4)
+
+  document.write(`Рандомні покази температур: ${temp1}, ${temp2}, ${temp3}, ${temp4}<br>`)
   document.write(`Середнє значення для додатних показів температури: ${avgValueOfTemp.toFixed(1)}`)
 </script>
 </body>

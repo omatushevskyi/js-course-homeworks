@@ -15,16 +15,16 @@
 </p>
 
 <script>
-  function getRandomImage(imgPath1, imgPath2, imgPath3, imgPath4) {
-    const min = 1, max = arguments.length
+  function getRandomPathImage(...paths) {
+    const min = 1, max = paths.length
     const randomNumImg = min + Math.floor(Math.random() * (max - min + 1))
-    let path
+    let imagePath
 
     for (let i = 0; i < max; i++) {
-      if (randomNumImg === i + 1) path = arguments[i]
+      if (randomNumImg === i + 1) imagePath = paths[i]
     }
 
-    return path
+    return imagePath
   }
 
   const imagePath1 = `img-task-7/img1.jpg`
@@ -32,10 +32,10 @@
   const imagePath3 = `img-task-7/img3.jpg`
   const imagePath4 = `img-task-7/img4.jpg`
 
-  const imgPath = getRandomImage(imagePath1, imagePath2, imagePath3, imagePath4)
-  const showImg = `<img src=${imgPath} alt=""/>`
+  const imgPath = getRandomPathImage(imagePath1, imagePath2, imagePath3, imagePath4)
+  const image = `<img src=${imgPath} alt=""/>`
 
-  document.write(showImg)
+  document.write(image)
 </script>
 </body>
 </html>
