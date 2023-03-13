@@ -10,32 +10,70 @@
 <body>
 <h1>Задача 7</h1>
 <p>
-  Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень передаються у
-  функцію)
+  Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
 </p>
+<ol>
+  <li>за весь рік;</li>
+  <li>у першій половині року;</li>
+  <li>у другій половині року;</li>
+  <li>за літо;</li>
+  <li>за ІІ квартал;</li>
+  <li>за парні місяці (з парними номерами);</li>
+  <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима)</li>
+</ol>
 
 <script>
-  function getRandomPathImage(...paths) {
-    const min = 1, max = paths.length
-    const randomNumImg = min + Math.floor(Math.random() * (max - min + 1))
-    let imagePath
-
-    for (let i = 0; i < max; i++) {
-      if (randomNumImg === i + 1) imagePath = paths[i]
+  function getPaymentsSumInRange(payments, startMonth, endMonth) {
+    let sum = 0
+    for (let month = startMonth; month <= endMonth; month++) {
+      sum += payments[month - 1]
     }
-
-    return imagePath
+    return sum
   }
 
-  const imagePath1 = `img-task-7/img1.jpg`
-  const imagePath2 = `img-task-7/img2.jpg`
-  const imagePath3 = `img-task-7/img3.jpg`
-  const imagePath4 = `img-task-7/img4.jpg`
+  function getEvenPaymentsSum(payments) {
+    let sum = 0
+    for (let i = 1; i <= payments.length; i++) {
+      if (i % 2 === 0) sum += payments[i - 1]
+    }
+    return sum
+  }
 
-  const imgPath = getRandomPathImage(imagePath1, imagePath2, imagePath3, imagePath4)
-  const image = `<img src=${imgPath} alt=""/>`
+  function getPaymentsSumFirstMonthOfSeason(payments) {
+    let sum = 0
+    for (let i = 1; i <= payments.length; i++) {
+      if (i % 3 === 0) sum += payments[i - 1]
+    }
+    return sum
+  }
 
-  document.write(image)
+  function getRandomArr(valuesNum, min, max) {
+    let arr = []
+    for (let i = 0; i < valuesNum; i++) {
+      const randNum = min + Math.floor(Math.random() * (max - min + 1))
+      arr.push(randNum)
+    }
+    return arr
+  }
+
+  // const annualPayments = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  const annualPayments = getRandomArr(12, 1, 10)
+
+  const sumPerYear = getPaymentsSumInRange(annualPayments, 1, 12)
+  const sumFirstHalfYear = getPaymentsSumInRange(annualPayments, 1, 6)
+  const sumSecondHalfYear = getPaymentsSumInRange(annualPayments, 7, 12)
+  const sumOfSummer = getPaymentsSumInRange(annualPayments, 6, 8)
+  const sumPerQuarter = getPaymentsSumInRange(annualPayments, 4, 6)
+  const sumEvenMonths = getEvenPaymentsSum(annualPayments)
+  const sumFirstMonthsOfSeason = getPaymentsSumFirstMonthOfSeason(annualPayments)
+
+  document.write(`Сума за увесь рік = ${sumPerYear}<br>`)
+  document.write(`Сума за першу половину року = ${sumFirstHalfYear}<br>`)
+  document.write(`Сума за другу половину року = ${sumSecondHalfYear}<br>`)
+  document.write(`Сума за літо = ${sumOfSummer}<br>`)
+  document.write(`Сума за II квартал = ${sumPerQuarter}<br>`)
+  document.write(`Сума за парні місяці = ${sumEvenMonths}<br>`)
+  document.write(`Сума за місяці, які є початковими у сезоні = ${sumFirstMonthsOfSeason}`)
 </script>
 </body>
 </html>

@@ -10,33 +10,48 @@
 <body>
 <h1>Задача 4</h1>
 <p>
-  Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів:
-  кількість парних, кількість додатних, кількість більших за 100.
+  Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
 </p>
 
-<script>
-  function universalFunc(...numbers) {
-    let countEvenNum = 0
-    let countPositiveNum = 0
-    let countOver100 = 0
+<ul>
+  <li>починаються на букву «А»;</li>
+  <li>перша і остання літери збігаються;</li>
+  <li>складаються з більше ніш 5 символів;</li>
+</ul>
 
-    for (let i = 0; i < numbers.length; i++){
-      if (numbers[i] % 2 === 0) countEvenNum++
-      if (numbers[i] > 0) countPositiveNum++
-      if (numbers[i] > 100) countOver100++
+<script>
+  function getNumberWithFirstLetter(regPlates, letter) {
+    let firstANumber = 0
+    for (let i = 0; i < regPlates.length; i++) {
+      if (regPlates[i][0] === letter) firstANumber++
     }
-    // return `Парних: ${countEvenNum}<br>Додатних: ${countPositiveNum}<br> Більших від 100: ${countOver100}`
-    return [countEvenNum, countPositiveNum, countOver100]
+    return firstANumber
   }
 
-  const minR = -200, maxR = 200
-  const num1 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
-  const num2 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
-  const num3 = Math.floor(Math.random() * (maxR - minR + 1)) + minR
+  function getNumberWhenFirstAndLastAreEqual(regPlates) {
+    let equalNumber = 0
+    for (let i = 0; i < regPlates.length; i++) {
+      if (regPlates[i][0] === regPlates[i].at(-1)) equalNumber++
+    }
+    return equalNumber
+  }
 
-  const showResult = universalFunc(num1, num2, num3)
-  document.write(`Числа: ${num1}, ${num2}, ${num3}<br>`)
-  document.write(`Парних: ${showResult[0]}<br>Додатних: ${showResult[1]}<br> Більших від 100: ${showResult[2]}`)
+  function getNumberWhenLengthMore5(regPlates) {
+    let lengthNumber = 0
+    for (let i = 0; i < regPlates.length; i++) {
+      if (regPlates[i].length > 5) lengthNumber++
+    }
+    return lengthNumber
+  }
+
+  const vehicleRegPlates = ['AK2455AA', 'RE1911YY', 'AA0485ZA', 'AT12V', '1564', 'AA1234TV', '3412', 'AH0880']
+  const firstLetterNumber = getNumberWithFirstLetter(vehicleRegPlates, 'A')
+  const firstAndLastEqual = getNumberWhenFirstAndLastAreEqual(vehicleRegPlates)
+  const lengthMoreThen5 = getNumberWhenLengthMore5(vehicleRegPlates)
+
+  document.write(`Кількість номерів, які:<br>- починаються на літеру 'А': ${firstLetterNumber}<br>`)
+  document.write(`- перша і остання літери збігаються: ${firstAndLastEqual}<br>`)
+  document.write(`- складаються з більше ніш 5 символів: ${lengthMoreThen5}`)
 </script>
 </body>
 </html>

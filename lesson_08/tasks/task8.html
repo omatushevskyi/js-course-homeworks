@@ -10,24 +10,37 @@
 <body>
 <h1>Задача 8</h1>
 <p>
-  Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди переходимо
-  при кліку на зображення (тег img повине знаходитись у середині тега a: &lt;a&gt; &lt;img src=”шлях”&gt; &lt;/a&gt;
-  <!--  <a> <img src=”шлях”> </a>-->
+  Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином
+  значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться).
+  Знаходити сумарний виграш.
 </p>
 
-
 <script>
-  function showBanner(img, header, link) {
-    let banner = `<h2>${header}</h2><a href=${link}>${img}</a>`
-    return banner
+  function getRandomArr(valuesNum, min, max) {
+    let arr = []
+    for (let i = 0; i < valuesNum; i++) {
+      const randNum = min + Math.floor(Math.random() * (max - min + 1))
+      arr.push(randNum)
+    }
+    return arr
   }
 
-  const bannerImage = `<img height="256" src="img-task-8/task7.png" alt="img">`
-  const bannerHeader = `GitHub`
-  const bannerLink = `https://github.com`
+  function playLottery(lotteryTicketsArr) {
+    let element, info, playerAnswer, totalWin = 0
+    do {
+      element = parseInt(prompt(`Виберіть доступний лотерейний квиток від 1 до ${lotteryTicketsArr.length}`))
+      totalWin += lotteryTicketsArr[element-1]
+      info = `Ви виграли ${lotteryTicketsArr[element-1]} грн. Ваш загальний виграш ${totalWin}грн.\nБажаєте продовжити?`
+      playerAnswer = confirm(info)
+    } while (playerAnswer)
 
-  const userBanner = showBanner(bannerImage, bannerHeader, bannerLink)
-  document.write(userBanner)
+    return totalWin
+  }
+
+  const lotteryTickets = getRandomArr(100, -500, 500)
+  const lottery = playLottery(lotteryTickets)
+
+  document.write(`Ви виграли ${lottery} грн.`)
 </script>
 </body>
 </html>

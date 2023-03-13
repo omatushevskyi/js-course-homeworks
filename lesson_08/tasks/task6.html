@@ -10,33 +10,52 @@
 <body>
 <h1>Задача 6</h1>
 <p>
-  Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
-  фіксованим повідомленням).
+  Дано послідовність цін товарів та назв (в окремих масивах). Вивести на екран ті, які може собі дозволити
+  користувач (кількість грошей задається).
 </p>
 
 <script>
-  function createTable(rows, cols, data) {
-    let table = `<table border=1px><tbody>`
-
-    for (let i = 0; i < rows; i++) {
-      table += `<tr>`
-      for (let j = 0; j < cols; j++) {
-        table += `<td>${data}</td>`
-      }
-      table += `</tr>`
-    }
-    table += `</tbody></table>`
-    
-    return table
+  function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  const tableRows = parseInt(prompt('Введіть кількість рядків таблиці'))
-  const tableCols = parseInt(prompt('Введіть кількість стовпців таблиці'))
-  const tableData = prompt('Введіть текст, для заповнення таблиці')
+  function getPricesArr(pricesNumber) {
+    let grades = []
+    for (let i = 0; i < pricesNumber; i++) {
+      grades[i] = getRandomNum(1, 10)
+    }
+    return grades
+  }
 
-  const userTable = createTable(tableRows, tableCols, tableData)
+  function enoughMoneyFor(customerMoney, productNames, productsPrices) {
+    let canBuyProdName = []
+    let canBuyProdPrice = []
 
-  document.write(userTable)
+    for (let i = 0; i < productsPrices.length; i++) {
+      if (customerMoney - productsPrices[i] >= 0) {
+        canBuyProdName.push(productNames[i])
+        canBuyProdPrice.push(productsPrices[i])
+      }
+    }
+    return [canBuyProdName, canBuyProdPrice]
+  }
+
+  function getResultToShow(currentMoney, canBuyName, canBuyPrice) {
+    let showResult = `Ви маєте ${currentMoney} грн.<br>Вам вистачає грошей, щоб купити:<br>`
+    for (let i = 0; i < canBuyName.length; i ++) {
+      showResult += `* ${canBuyName[i]} ——— ${canBuyPrice[i]} грн.<br>`
+    }
+    return showResult
+  }
+
+  const productsTitles = ['молоко', 'вода', 'картопля', 'хліб', 'огірок']
+  const productsPrices = getPricesArr(productsTitles.length)
+  const money = parseFloat(prompt('Введіть наявну суму грошей'))
+  const [products, prices] = enoughMoneyFor(money, productsTitles, productsPrices)
+  const result = getResultToShow(money, products, prices)
+
+  document.write(result)
+
 </script>
 </body>
 </html>

@@ -10,58 +10,56 @@
 <body>
 <h1>Задача 1</h1>
 <p>
-  Створити функцію, яка за номером місяця повертає його назву.
+  Дано масив, який містить оцінки з К предметів. Знайти середній бал і зʼясувати до якої категорії він відноситься
+  (відмінник, двієчник (має хоча б одну двійку), хорошист (оцінки добре і відмінно), трієчник(є хоча би одна
+  трійка)).
 </p>
 
 <script>
-  function getMothName (numOfMonth) {
-    let month = ''
-    switch (numOfMonth) {
-      case 12:
-        month = 'Грудень'
-        break
-      case 1:
-        month = 'Січень'
-        break
-      case 2:
-        month = 'Лютий'
-        break
-      case 3:
-        month = 'Березень'
-        break
-      case 4:
-        month = 'Квітень'
-        break
-      case 5:
-        month = 'Травель'
-        break
-      case 6:
-        month = 'Червень'
-        break
-      case 7:
-        month = 'Липень'
-        break
-      case 8:
-        month = 'Серпень'
-        break
-      case 9:
-        month = 'Вересень'
-        break
-      case 10:
-        month = 'Жовтень'
-        break
-      case 11:
-        month = 'Листопад'
-        break
-      default:
-        month = 'Такого місяця не існує'
-        break
-    }
-    return month
+  function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  let monthName = getMothName(4)
-  document.write(monthName)
+  function getGradesArr(gradesNumber) {
+    let grades = []
+    for (let i = 0; i < gradesNumber; i++) {
+      grades[i] = getRandomNum(2, 5)
+    }
+    return grades
+  }
+
+  function getGradesAvg(grades) {
+    let gradesSum = 0
+    for (let i = 0; i < grades.length; i++) {
+      gradesSum += grades[i]
+    }
+    return gradesSum / grades.length
+  }
+
+  function checkStudentPerformance(grades) {
+    let minGrade = +Infinity
+    let performance
+
+    for (let i = 0; i < grades.length; i++) {
+      if (grades[i] < minGrade) minGrade = grades[i]
+    }
+
+    if (minGrade === 2) performance = 'двієчник(ця)'
+    else if (minGrade === 3) performance = 'трієчник(ця)'
+    else if (minGrade === 4) performance = 'хорошист(ка)'
+    else performance = 'відмінник(ця)'
+
+    return performance
+  }
+
+  const gradesNumber = parseInt(prompt('Введіть кількість оцінок студента', '5'))
+  const studentsGrades = getGradesArr(gradesNumber)
+  const studentsGradesAvg = getGradesAvg(studentsGrades)
+  const studentPerf = checkStudentPerformance(studentsGrades)
+
+  document.write(`Оцінки студента(ки):${studentsGrades}<br>`)
+  document.write(`Середня оцінка студента(ки): ${studentsGradesAvg.toFixed(1)}<br>`)
+  document.write(`Студент(ка) "${studentPerf}"`)
 </script>
 
 </body>

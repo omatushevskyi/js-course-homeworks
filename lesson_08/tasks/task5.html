@@ -10,39 +10,72 @@
 <body>
 <h1>Задача 5</h1>
 <p>
-  Створити окремі функції, які переводять:
-  <br>1) Сантиметри у дюйми;
-  <br>2) Кілограми у фунти;
-  <br>3) Кілометри у милі.
+  Дано послідовність оцінок учня. Підрахувати кількість:
 </p>
 
+<ul>
+  <li>двійок</li>
+  <li>кількість хороших оцінок (добре, відмінно)</li>
+  <li>кількість оцінок, які нижче середнього</li>
+</ul>
+
 <script>
-  function cmToInch (numCm) {
-    const oneCmInInches = 0.393700787
-    return numCm * oneCmInInches
+  function getGradesAvg(grades) {
+    let gradesSum = 0
+    for (let i = 0; i < grades.length; i++) {
+      gradesSum += grades[i]
+    }
+
+    return gradesSum / grades.length
   }
 
-  function kgToPound (numKg) {
-    const oneKgInPounds = 2.20462262
-    return numKg * oneKgInPounds
+  function getNumberOfBadGrades(grades) {
+    let numOf2 = 0
+    for (let grade of grades) {
+      if (grade === 2) numOf2++
+    }
+    return numOf2
   }
 
-  function kmToMile (numKm) {
-    const oneKmInMiles = 0.621371192
-    return numKm * oneKmInMiles
+  function getNumberOfGoodGrades(grades) {
+    let numOf4And5 = 0
+    for (let grade of grades) {
+      if (grade === 4 || grade === 5) numOf4And5++
+    }
+    return numOf4And5
   }
 
-  const minR = 1, maxR= 100
-  const randNum = minR + Math.random() * (maxR - minR)
+  function getNumberOfGradesBelowAvg(grades, gradesAvg) {
+    let numOfBelowAvg = 0
+    for (let grade of grades) {
+      if (grade < gradesAvg) numOfBelowAvg++
+    }
+    return numOfBelowAvg
+  }
 
-  const inches = cmToInch(randNum)
-  const pounds = kgToPound(randNum)
-  const miles = kmToMile(randNum)
+  function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
 
-  document.write(`${randNum.toFixed(2)} cm = ${inches.toFixed(2)} in<br>`)
-  document.write(`${randNum.toFixed(2)} kg = ${pounds.toFixed(2)} lb<br>`)
-  document.write(`${randNum.toFixed(2)} km = ${miles.toFixed(2)} mi.<br>`)
+  function getGradesArr(gradesNumber) {
+    let grades = []
+    for (let i = 0; i < gradesNumber; i++) {
+      grades[i] = getRandomNum(2, 5)
+    }
+    return grades
+  }
 
+  // const studentsGrades = [2, 3, 4, 5, 3, 3, 2, 4, 5]
+  const studentsGrades = getGradesArr(5)
+  const gradesAvg = getGradesAvg(studentsGrades)
+  const numOf2 = getNumberOfBadGrades(studentsGrades)
+  const numOf4and5 = getNumberOfGoodGrades(studentsGrades)
+  const numOfGradesBelowAvg = getNumberOfGradesBelowAvg(studentsGrades, gradesAvg)
+
+  document.write(`Оцінки: ${studentsGrades}<br>`)
+  document.write(`Кількість двійок: ${numOf2}<br>`)
+  document.write(`Кількість четвірок і пʼятірок: ${numOf4and5}<br>`)
+  document.write(`Кількість оцінок нижчих за середнє: ${numOfGradesBelowAvg} (середнє = ${gradesAvg.toFixed(2)})`)
 </script>
 </body>
 </html>
