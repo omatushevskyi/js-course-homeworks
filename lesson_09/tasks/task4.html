@@ -14,22 +14,14 @@
 </p>
 
 <script>
-  function getRandArr(pricesNumber, min, max) {
-    let arr = []
-    for (let i = 0; i < pricesNumber; i++) {
-      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
-    }
-    return arr
-  }
-
-  const arr = getRandArr(10, 90, 110)
+  const arr = [99, 110, 96, 101, 90, 98, 105, 102, 109, 104]
   let greater100 = []
 
   for (let el of arr) {
     if (el > 100) greater100.push(el)
   }
 
-  document.write(`${greater100}`)
+  document.write(`Елементи більші 100: ${greater100}`)
 </script>
 </body>
 </html>

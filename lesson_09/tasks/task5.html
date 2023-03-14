@@ -14,15 +14,7 @@
 </p>
 
 <script>
-  function getRandArr(pricesNumber, min, max) {
-    let arr = []
-    for (let i = 0; i < pricesNumber; i++) {
-      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
-    }
-    return arr
-  }
-
-  const arr = getRandArr(5, -10, 10)
+  const arr = [2, -5, 3, -8, 2]
   let product = 1
 
   for (let el of arr) {
