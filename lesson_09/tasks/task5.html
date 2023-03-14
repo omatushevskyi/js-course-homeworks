@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>
+  Дано масив елементів. Знайти добуток додатних елементів
+</p>
+
+<script>
+  function getRandArr(pricesNumber, min, max) {
+    let arr = []
+    for (let i = 0; i < pricesNumber; i++) {
+      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
+    }
+    return arr
+  }
+
+  const arr = getRandArr(5, -10, 10)
+  let product = 1
+
+  for (let el of arr) {
+    if (el > 0) product *= el
+  }
+  document.write(`Масив: ${arr}<br>`)
+  document.write(`Добуток додатніх елементів = ${product}`)
+</script>
+</body>
+</html>
