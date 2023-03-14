@@ -15,19 +15,11 @@
 </p>
 
 <script>
-  function getRandArr(pricesNumber, min, max) {
-    let arr = []
-    for (let i = 0; i < pricesNumber; i++) {
-      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
-    }
-    return arr
-  }
-
-  const prices = getRandArr(10, 100, 200)
-  console.log(prices);
+  const prices = [193, 188, 186, 157, 128, 147, 115, 103, 113, 136]
+  document.write(`Масив цін = [${prices}]<br>`);
   const taxesList = prices.map(price => Math.round(price * 0.2))
 
-  document.write(`${taxesList}`)
+  document.write(`Масив сплачених податків = [${taxesList}]`)
 </script>
 </body>
 </html>

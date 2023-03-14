@@ -14,16 +14,8 @@
 </p>
 
 <script>
-  function getRandArr(pricesNumber, min, max) {
-    let arr = []
-    for (let i = 0; i < pricesNumber; i++) {
-      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
-    }
-    return arr
-  }
-
-  const arr = getRandArr(8, 900, 1100)
-  document.write(`Ціни товарів до знижкм: ${arr}<br>`)
+  const arr = [1047, 1072, 1089, 940, 1000, 993, 1077, 970]
+  document.write(`Ціни товарів до знижки: ${arr}<br>`)
 
   arr.forEach((el, i, array) => {
     if (el > 1000) array[i] = Math.floor(el * 0.7)

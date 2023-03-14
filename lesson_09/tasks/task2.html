@@ -10,8 +10,8 @@
 <body>
 <h1>Задача 2</h1>
 <p>
-  Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга заповнена
-  7-ками
+  Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена
+  1-цями, а друга заповнена 7-ками
 </p>
 
 </body>
@@ -19,7 +19,7 @@
 <script>
   const elementsNum = parseInt(prompt('Введіть кількість елементів'))
   const halfArr = Math.floor(elementsNum / 2)
-  const array = new Array(elementsNum).fill(1).fill(7, halfArr)
+  const array = new Array(elementsNum).fill(1, 0, halfArr).fill(7, halfArr)
 
   document.write(`${array}`)
 </script>
