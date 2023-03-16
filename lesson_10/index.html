@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 10</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/js_logo.ico">
+</head>
+<body>
+<h1>Дз №10</h1>
+<p>
+  Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000)
+</p>
+<ol>
+  <li>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</li>
+  <li>Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</li>
+  <li>Сформувати список з тих цін, які більші за попереднє значення</li>
+  <li>Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального</li>
+  <li>Підрахувати кількість змін цін</li>
+  <li>Визначити, чи є ціна, що менше 1000</li>
+  <li>Визначати, чи усі ціни більше за 1000</li>
+  <li>Підрахувати кількість цін, що більше за 1000</li>
+  <li>Підрахувати суму цін, що більше за 1000</li>
+  <li>Знайти першу ціну, що більше за 1000</li>
+  <li>Знайти індекс першої ціни, що більше за 1000</li>
+  <li>Знайти останню ціну, що більше за 1000</li>
+  <li>Знайти індекс останньої ціни, що більше за 1000</li>
+</ol>
+
+<script>
+  function getRandArr(arrSize, min, max) {
+    let arr = []
+    for (let i = 0; i < arrSize; i++) {
+      arr[i] = Math.floor(Math.random() * (max - min + 1)) + min
+    }
+    return arr
+  }
+
+  const sharesPriceList = getRandArr(5, 1, 10000)
+  document.write(`Історія цін на цінні папери: ${sharesPriceList.join(', ')}<br>`)
+
+  // Task 1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+  const greater1000 = sharesPriceList.filter(price => price > 1000)
+  document.write(`1. Більші 1000: ${greater1000.join(', ')}<br>`)
+
+  // Task 2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+  const greater1000Indexes = sharesPriceList.reduce((prevList, el, index) => {
+    if (el > 1000) prevList.push(index)
+    return prevList
+  }, [])
+  document.write(`2. Номери цін більших 1000: ${greater1000Indexes.join(', ')}<br>`)
+
+  // Task 3. Сформувати список з тих цін, які більші за попереднє значення
+  const greaterPrev = sharesPriceList.reduce((prevValues, currentValue, currentIndex, array) => {
+    if (currentValue > array[currentIndex - 1]) prevValues.push(currentValue)
+    return prevValues
+  }, [])
+  document.write(`3. Ціни більші за попередні: ${greaterPrev.join(', ')}<br>`)
+
+  // Task 4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+  // Скільки % складає 24 від 40. 24 * 100 / 40 = 60
+  const max = Math.max(...sharesPriceList)
+  const pricesPercentageOfMax = sharesPriceList.map(el => Math.ceil(el * 100 / max))
+
+  document.write(`4. Ціни у відсотках: ${pricesPercentageOfMax.join('%, ')}%<br>`)
+
+  // Task 5. Підрахувати кількість змін цін
+  const pricesChanging = sharesPriceList.reduce((prevChange, el, index, arr) => el !== arr[0] ? prevChange + 1 : prevChange, 0)
+  document.write(`5. Кількість змін цін: ${pricesChanging}<br>`)
+
+  // Task 6. Визначити, чи є ціна, що менше за 1000
+  let resultSome
+  if (sharesPriceList.some(price => price < 1000)) resultSome = 'Так'
+  else resultSome = 'Ні'
+  document.write(`6. Чи є ціна, що менша за 1000: ${resultSome}<br>`)
+
+  // Task 7. Визначати, чи усі ціни більше за 1000
+  let resultEvery
+  if (sharesPriceList.every(price => price > 1000)) resultEvery = 'Так'
+  else resultEvery = 'Ні'
+  document.write(`7. Чи усі ціни більше за 1000: ${resultEvery}<br>`)
+
+  // Task 8. Підрахувати кількість цін, що більше за 1000
+  const gThen1000 = sharesPriceList.reduce((greater1000Num, price) => price > 1000 ? greater1000Num + 1 : greater1000Num, 0)
+  document.write(`8. Кількість цін, що більше за 1000: ${gThen1000}<br>`)
+
+  // Task 9. Підрахувати суму цін, що більше за 1000
+  const gThen1000Sum = sharesPriceList.reduce((greater1000Sum, price) => price > 1000 ? greater1000Sum + price : greater1000Sum, 0)
+  document.write(`9. Сума цін, що більші за 1000: ${gThen1000Sum}<br>`)
+
+  // Task 10. Знайти першу ціну, що більше за 1000
+  const greaterFirst1000 = sharesPriceList.find(price => price > 1000)
+  document.write(`10. Перша ціна, що більша за 1000: ${greaterFirst1000}<br>`)
+
+  // Task 11. Знайти індекс першої ціни, що більше за 1000
+  const greaterFirst1000Index = sharesPriceList.findIndex(price => price > 1000)
+  document.write(`11. Індекс першої ціни, що більша за 1000: ${greaterFirst1000Index}<br>`)
+
+  // Task 12. Знайти останню ціну, що більше за 1000
+  const greaterLast1000 = sharesPriceList.findLast(price => price > 1000)
+  document.write(`12. Остання ціна, що більша за 1000: ${greaterLast1000}<br>`)
+
+  // Task 13. Знайти індекс останньої ціни, що більше за 1000
+  const greaterLast1000Index = sharesPriceList.findLastIndex(price => price > 1000)
+  document.write(`13. Індекс останньої ціни, що більша за 1000: ${greaterLast1000Index}<br>`)
+</script>
+</body>
+</html>
