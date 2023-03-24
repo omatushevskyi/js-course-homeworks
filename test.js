@@ -1,4 +1,4 @@
-const c = 5
+let arr = ['1', '10', '100', '1000']
+let newArr = arr.map(el => parseInt(el))
 
-let b = c + c - 1
-console.log(c)
+console.log(newArr)

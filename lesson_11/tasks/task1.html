@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Знайти суми елементів у вказаній області
+</p>
+<ol>
+  <li>
+    <img src="./img/t1_1.png" alt="first">
+  </li>
+  <li>
+    <img src="./img/t1_2.png" alt="second">
+  </li>
+  <li>
+    <img src="./img/t1_3.png" alt="third">
+  </li>
+  <li>
+    <img src="./img/t1_4.png" alt="fourth">
+  </li>
+  <li>Суму парних рядків</li>
+  <li>Суму непарних стовпців</li>
+  <li>У парних рядках – непарні стовпці, у непарних – парні</li>
+</ol>
+
+<script>
+  function getRandNum(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1))
+  }
+
+  function getRandArr(arrSize, min, max) {
+    let arr = []
+    for (let j = 0; j < arrSize; j++) {
+      const rand = getRandNum(min, max)
+      arr.push(rand)
+    }
+    return arr
+  }
+
+  function getRandTableArr(rowsSize, colsSize, min, max) {
+    let table = []
+    for (let i = 0; i < rowsSize; i++) {
+      const rand = getRandArr(colsSize, min, max)
+      table.push(rand)
+    }
+    return table
+  }
+
+  function sumOfQuarter(arr, sumRowsFrom, sumRowsTo, sumColsFrom, sumColsTo) {
+    let sum = 0
+    for (let i = sumRowsFrom; i < sumRowsTo; i++) {
+      for (let j = sumColsFrom; j < sumColsTo; j++) {
+        sum += arr[i][j]
+      }
+    }
+    return sum
+  }
+
+  const table = getRandTableArr(4, 4, 1, 9) // матриця 4 х 4, числа 1-9
+  const startRows = 0
+  const startCols = 0
+  const halfRows = Math.ceil(table.length / 2)
+  const halfCols = Math.ceil(table[0].length / 2)
+  const endRows = table.length
+  const endCols = table[0].length
+
+  // 1
+  const sumTopLeft = sumOfQuarter(table, startRows, halfRows, startCols, halfCols)
+  // 2
+  const sumTopRight = sumOfQuarter(table, startRows, halfRows, halfCols, endCols)
+  // 3
+  const sumBottomLeft = sumOfQuarter(table, halfRows, endRows, startCols, halfCols)
+  // 4
+  const sumBottomRight = sumOfQuarter(table, halfRows, endRows, halfCols, endCols)
+  // 5
+  let sumEvenRows = 0
+  for (let i = 0; i < endRows; i += 2) {
+    for (let j = 0; j < endCols; j++) {
+      sumEvenRows += table[i][j]
+    }
+  }
+  // 6
+  let sumOddCols = 0
+  for (let i = 0; i < endRows; i++) {
+    for (let j = 1; j < endCols; j += 2) {
+      sumOddCols += table[i][j]
+    }
+  }
+  // 7
+  let sum1= 0
+  for (let i = 0; i < endRows; i++) {
+    for (let j = (1 - i % 2); j < endCols; j += 2) {
+      sum1 += table[i][j]
+    }
+  }
+
+  console.log(table);
+
+  document.write(`1. Сума 2 чверті: ${sumTopLeft}<br>`)
+  document.write(`2. Сума 1 чверті: ${sumTopRight}<br>`)
+  document.write(`3. Сума 3 чверті: ${sumBottomLeft}<br>`)
+  document.write(`4. Сума 4 чверті: ${sumBottomRight}<br>`)
+  document.write(`5. Сума парних рядків: ${sumEvenRows}<br>`)
+  document.write(`6. Сума непарних стовпців: ${sumOddCols}<br>`)
+  document.write(`7. У парних рядках – непарні стовпці, у непарних – парні: ${sum1}<br>`)
+</script>
+</body>
+</html>

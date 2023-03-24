@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Дано інформацію про прибуток К магазинів протягом тижня. Знайти:
+</p>
+<ol>
+  <li>загальний прибуток кожного масиву за тиждень</li>
+  <li>
+    загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+    т.д.)
+  </li>
+  <li>загальний прибуток за робочі дні</li>
+  <li>загальний прибуток за вихідні дні</li>
+  <li>максимальний прибуток за середу</li>
+  <li>сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200</li>
+  <li>відсортувати кожен тиждень за зростанням</li>
+  <li>
+    відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+    рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+  </li>
+  <li>
+    упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти
+    суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти
+    раніше)
+  </li>
+</ol>
+</body>
+
+<script>
+  function getRandNum(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1))
+  }
+
+  function getRandArr(arrSize, min, max) {
+    let arr = []
+    for (let j = 0; j < arrSize; j++) {
+      const rand = getRandNum(min, max)
+      arr.push(rand)
+    }
+    return arr
+  }
+
+  function getRandTableArr(shopsNumber, days, min, max) {
+    let table = []
+    for (let i = 0; i < shopsNumber; i++) {
+      const rand = getRandArr(days, min, max)
+      table.push(rand)
+    }
+    return table
+  }
+
+  const storesProfits = getRandTableArr(5, 7, 1, 9)
+  console.log(storesProfits)
+  const shopsNum = storesProfits.length
+
+  // 1
+  let shopsSumPerWeek = []
+  for (let i = 0; i < shopsNum; i++) {
+    let sum = 0
+    for (let j = 0; j < storesProfits[i].length; j++) {
+      sum += storesProfits[i][j]
+    }
+    shopsSumPerWeek.push(sum)
+  }
+
+  // 2
+  let shopsSumPerDay = []
+  for (let i = 0; i < storesProfits[0].length; i++) {
+    let sum = 0
+    for (let j = 0; j < shopsNum; j++) {
+      sum += storesProfits[j][i]
+    }
+    shopsSumPerDay.push(sum)
+  }
+
+  // 3
+  let shopsSumPerWorkdays = []
+  for (let i = 0; i < 5; i++) {
+    let sum = 0
+    for (let j = 0; j < shopsNum; j++) {
+      sum += storesProfits[j][i]
+    }
+    shopsSumPerWorkdays.push(sum)
+  }
+
+  // 4
+  let shopsSumPerWeekdays = []
+  for (let i = 5; i < storesProfits[0].length; i++) {
+    let sum = 0
+    for (let j = 0; j < shopsNum; j++) {
+      sum += storesProfits[j][i]
+    }
+    shopsSumPerWeekdays.push(sum)
+  }
+
+  // 5
+  let shopsSumPerWed = 0
+  for (let i = 2; i < 3; i++) {
+    for (let j = 0; j < shopsNum; j++) {
+      shopsSumPerWed += storesProfits[j][i]
+    }
+  }
+
+  document.write(`1. ${shopsSumPerWeek}<br>`)
+  document.write(`2. ${shopsSumPerDay}<br>`)
+  document.write(`3. ${shopsSumPerWorkdays}<br>`)
+  document.write(`4. ${shopsSumPerWeekdays}<br>`)
+  document.write(`5. ${shopsSumPerWed}<br>`)
+</script>
+</html>
