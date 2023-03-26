@@ -53,6 +53,7 @@
     return table
   }
 
+  // Tasks 1 - 4
   function sumOfQuarter(arr, sumRowsFrom, sumRowsTo, sumColsFrom, sumColsTo) {
     let sum = 0
     for (let i = sumRowsFrom; i < sumRowsTo; i++) {
@@ -94,14 +95,12 @@
     }
   }
   // 7
-  let sum1= 0
+  let sum = 0
   for (let i = 0; i < endRows; i++) {
     for (let j = (1 - i % 2); j < endCols; j += 2) {
-      sum1 += table[i][j]
+      sum += table[i][j]
     }
   }
-
-  console.log(table);
 
   document.write(`1. Сума 2 чверті: ${sumTopLeft}<br>`)
   document.write(`2. Сума 1 чверті: ${sumTopRight}<br>`)
@@ -109,7 +108,7 @@
   document.write(`4. Сума 4 чверті: ${sumBottomRight}<br>`)
   document.write(`5. Сума парних рядків: ${sumEvenRows}<br>`)
   document.write(`6. Сума непарних стовпців: ${sumOddCols}<br>`)
-  document.write(`7. У парних рядках – непарні стовпці, у непарних – парні: ${sum1}<br>`)
+  document.write(`7. У парних рядках – непарні стовпці, у непарних – парні: ${sum}<br>`)
 </script>
 </body>
 </html>

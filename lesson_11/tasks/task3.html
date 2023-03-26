@@ -15,7 +15,70 @@
 </p>
 
 <script>
+  function getRandNum(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1))
+  }
 
+  function getRandTableArr(arrSize) {
+    let row, field = []
+    for (let i = 0; i < arrSize; i++) {
+      row = new Array(arrSize).fill(0)
+      field.push(row)
+    }
+    return field
+  }
+
+  function getFreeCell(field) {
+    let indexRow, indexCol
+    const lastIndex = field.length - 1
+    do {
+      indexRow = getRandNum(0, lastIndex)
+      indexCol = getRandNum(0, lastIndex)
+    } while (field[indexRow][indexCol] === 1)
+
+    return [indexRow, indexCol]
+  }
+
+  function generateGameField(fieldSize, shipsNumber) {
+    const gameField = getRandTableArr(fieldSize)
+    let shipIndexCol, shipIndexRow
+    for (let i = 0; i < shipsNumber; i++) {
+      [shipIndexRow, shipIndexCol] = getFreeCell(gameField)
+      gameField[shipIndexRow][shipIndexCol] = 1
+    }
+    return gameField
+  }
+
+  function startGame(gameField, shipsNumber, ammoNum) {
+    let usedIndexes = []
+    let tries = 0, info
+    do {
+      info = `Залишилось пострілів: ${ammoNum}\nВикористані індекси [${usedIndexes.join('][')}]`
+      const userIndexRow = parseInt(prompt(`Введіть номер рядка для пострілу (1 - ${gameField.length})\n${info}`)) - 1
+      const userIndexCol = parseInt(prompt(`Введіть номер стовпця для пострілу (1 - ${gameField.length})\n${info}`)) - 1
+
+      if (gameField[userIndexRow][userIndexCol] === 1) {
+        alert('Ви попали')
+        shipsNumber--
+        gameField[userIndexRow][userIndexCol] = 0
+      } else alert('Промах')
+
+      usedIndexes.push([userIndexRow + 1, userIndexCol + 1])
+      ammoNum--
+      tries++
+    } while (shipsNumber > 0 && ammoNum > 0)
+    alert('Кінець гри!')
+    return [tries, shipsNumber]
+  }
+
+  const fieldSize = 6
+  const shipsNum = 5
+  const ammunitionNum = 10
+
+  const gameField = generateGameField(fieldSize, shipsNum)
+  const [shots, afloatShips] = startGame(gameField, shipsNum, ammunitionNum)
+
+  document.write(`Ви потопили ${shipsNum - afloatShips} корабля(лів) за ${shots} постріли(ів)`)
 </script>
 </body>
 </html>
