@@ -13,22 +13,22 @@
   Дано інформацію про прибуток К магазинів протягом тижня. Знайти:
 </p>
 <ol>
-  <li>загальний прибуток кожного масиву за тиждень</li>
+  <li>загальний прибуток кожного магазину за тиждень</li>
   <li>
-    загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+    загальний прибуток усіх магазинів за днями (загальний прибуток усіх магазинів за понеділок, за вівторок, і
     т.д.)
   </li>
   <li>загальний прибуток за робочі дні</li>
   <li>загальний прибуток за вихідні дні</li>
   <li>максимальний прибуток за середу</li>
-  <li>сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200</li>
+  <li>сформувати загальний список зі значенням, які більші за 200</li>
   <li>відсортувати кожен тиждень за зростанням</li>
   <li>
-    відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+    відсортувати тижні (рядки) за спаданням максимального елемента у цьому тижні (рядку), тобто при порівнянню
     рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
   </li>
   <li>
-    упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти
+    упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянню двох рядків треба знайти
     суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти
     раніше)
   </li>
@@ -58,62 +58,127 @@
     return table
   }
 
-  const storesProfits = getRandTableArr(5, 7, 1, 9)
-  console.log(storesProfits)
-  const shopsNum = storesProfits.length
-
   // 1
-  let shopsSumPerWeek = []
-  for (let i = 0; i < shopsNum; i++) {
-    let sum = 0
-    for (let j = 0; j < storesProfits[i].length; j++) {
-      sum += storesProfits[i][j]
+  function shopsTotalProfitForWeek(profitsList) {
+    let shopsSum = []
+    for (let i = 0; i < profitsList.length; i++) {
+      let sum = 0
+      for (let j = 0; j < profitsList[i].length; j++) {
+        sum += storesProfits[i][j]
+      }
+      shopsSum.push(sum)
     }
-    shopsSumPerWeek.push(sum)
+    return shopsSum
   }
 
-  // 2
-  let shopsSumPerDay = []
-  for (let i = 0; i < storesProfits[0].length; i++) {
-    let sum = 0
-    for (let j = 0; j < shopsNum; j++) {
-      sum += storesProfits[j][i]
+  // 2, 3, 4
+  function shopsSumForSelectedDays(profitsList, fromDay, toDay) {
+    let shopsSum = []
+    for (let i = fromDay - 1; i < toDay; i++) {
+      let sum = 0
+      for (let j = 0; j < profitsList.length; j++) {
+        sum += profitsList[j][i]
+      }
+      shopsSum.push(sum)
     }
-    shopsSumPerDay.push(sum)
-  }
-
-  // 3
-  let shopsSumPerWorkdays = []
-  for (let i = 0; i < 5; i++) {
-    let sum = 0
-    for (let j = 0; j < shopsNum; j++) {
-      sum += storesProfits[j][i]
-    }
-    shopsSumPerWorkdays.push(sum)
-  }
-
-  // 4
-  let shopsSumPerWeekdays = []
-  for (let i = 5; i < storesProfits[0].length; i++) {
-    let sum = 0
-    for (let j = 0; j < shopsNum; j++) {
-      sum += storesProfits[j][i]
-    }
-    shopsSumPerWeekdays.push(sum)
+    return shopsSum
   }
 
   // 5
-  let shopsSumPerWed = 0
-  for (let i = 2; i < 3; i++) {
-    for (let j = 0; j < shopsNum; j++) {
-      shopsSumPerWed += storesProfits[j][i]
+  function shopMaxProfitForWed(profitsList) {
+    let wedArr = []
+    for (let i = 0; i < profitsList.length; i++) {
+      wedArr.push(profitsList[i][2])
     }
+
+    return Math.max(...wedArr)
   }
 
-  document.write(`1. ${shopsSumPerWeek}<br>`)
-  document.write(`2. ${shopsSumPerDay}<br>`)
-  document.write(`3. ${shopsSumPerWorkdays}<br>`)
-  document.write(`4. ${shopsSumPerWeekdays}<br>`)
-  document.write(`5. ${shopsSumPerWed}<br>`)
+  // 6
+  function pricesGreater200(profitsList) {
+    let greater200Arr = []
+    for (let i = 0; i < profitsList.length; i++) {
+      for (let j = 0; j < profitsList[i].length; j++) {
+        if (profitsList[i][j] > 200) greater200Arr.push(profitsList[i][j])
+      }
+    }
+    return greater200Arr
+  }
+
+  // 7
+  function sortEachWeeksLowToHigh(profitsList) {
+    const sortedArr = JSON.parse(JSON.stringify(profitsList))
+    for (let i = 0; i < sortedArr.length; i++) {
+      sortedArr[i].sort((a, b) => a - b)
+    }
+    return sortedArr
+  }
+
+  function sortSelect(sortBy, matrix) {
+    const penultimateIndex = sortBy.length - 1
+    for (let i = 0; i < penultimateIndex; i++) {
+      let currMaxIndex = i
+      for (let j = i + 1; j < sortBy.length; j++) {
+        if (sortBy[j] > sortBy[currMaxIndex]) currMaxIndex = j
+      }
+      if (i !== currMaxIndex) {
+        let tmp = sortBy[i]
+        sortBy[i] = sortBy[currMaxIndex]
+        sortBy[currMaxIndex] = tmp
+
+        tmp = matrix[i]
+        matrix[i] = matrix[currMaxIndex]
+        matrix[currMaxIndex] = tmp
+      }
+    }
+  }
+  // 8
+  function sortWeeksByMaxHighToLow(profitsList) {
+    const sortedArr = JSON.parse(JSON.stringify(profitsList))
+    let maxPrices = profitsList.map(shop => Math.max(...shop))
+    sortSelect(maxPrices, sortedArr)
+    return sortedArr
+  }
+
+  // 9
+  function sortWeeksBySumHighToLow(profitsList) {
+    const sortedArr = JSON.parse(JSON.stringify(profitsList))
+    let sumPrices = profitsList.map(shop => shop.reduce((prevSum, price) => prevSum + price))
+    sortSelect(sumPrices, sortedArr)
+    return sortedArr
+  }
+
+  const shopsNum = 5
+  const storesProfits = getRandTableArr(shopsNum, 7, 1, 9)
+
+  // 1
+  const shopsSumPerWeek = shopsTotalProfitForWeek(storesProfits)
+  // 2
+  const shopsSumPerDay = shopsSumForSelectedDays(storesProfits, 1, 7)
+  // 3
+  const shopsSumPerWorkdays = shopsSumForSelectedDays(storesProfits, 1, 5)
+  // 4
+  const shopsSumPerWeekdays = shopsSumForSelectedDays(storesProfits, 6, 7)
+  // 5
+  const maxProfitForWed = shopMaxProfitForWed(storesProfits)
+  // 6
+  const greater200 = pricesGreater200(storesProfits)
+  // 7
+  const sortLowToHigh = sortEachWeeksLowToHigh(storesProfits)
+  // 8
+  const sortByMax = sortWeeksByMaxHighToLow(storesProfits)
+  // 9
+  const sortBySum = sortWeeksBySumHighToLow(storesProfits)
+
+  document.write(`Прибутки ${shopsNum} магазинів протягом тижня:<br>[${storesProfits.join(']<br>[')}]<br><br>`)
+  document.write(`1. Загальний прибуток кожного магазину за тиждень: ${shopsSumPerWeek.join(', ')}<br>`)
+  document.write(`2. Загальний прибуток усіх магазинів по днях: ${shopsSumPerDay.join(', ')}<br>`)
+  document.write(`3. Загальний прибуток за робочі дні: ${shopsSumPerWorkdays.join(', ')}<br>`)
+  document.write(`4. Загальний прибуток за вихідні дні: ${shopsSumPerWeekdays.join(', ')}<br>`)
+  document.write(`5. Максимальний прибуток за середу: ${maxProfitForWed}<br>`)
+  document.write(`6. Список зі значеннями, які більші за 200: ${greater200.join(', ')}<br>`)
+  document.write(`7. Посортовані тижні за зростанням:<br>[${sortLowToHigh.join(']<br>[')}]<br>`)
+  document.write(`8. Посортовані тижні за спаданням максимального елемента у цьому тижні:<br>[${sortByMax.join(']<br>[')}]<br>`)
+  document.write(`9. Посортовані тижні за спаданням максимального елемента у цьому тижні:<br>[${sortBySum.join(']<br>[')}]<br>`)
 </script>
 </html>
