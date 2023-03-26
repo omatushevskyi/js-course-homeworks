@@ -72,6 +72,8 @@
   const endRows = table.length
   const endCols = table[0].length
 
+  document.write(`Матриця:<br>[${table.join(']<br>[')}]<br><br>`)
+
   // 1
   const sumTopLeft = sumOfQuarter(table, startRows, halfRows, startCols, halfCols)
   // 2
