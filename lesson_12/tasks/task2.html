@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування змішуванням
+</p>
+
+</body>
+
+<script>
+  function randNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  function randomArr(arrSize, min, max) {
+    let arr = []
+    for (let i = 0; i < arrSize; i++) {
+      arr.push(randNum(min, max))
+    }
+    return arr
+  }
+
+  function swap(arr, currIndex, otherIndex) {
+    let tmp = arr[otherIndex]
+    arr[otherIndex] = arr[currIndex]
+    arr[currIndex] = tmp
+  }
+
+  function cocktailSort(arr) {
+    let leftIndex = 0, iterations = 0
+    let rightIndex = arr.length - 1
+
+    while (leftIndex < rightIndex) {
+      for (let i = leftIndex; i < rightIndex; i++) {
+        if (arr[i] > arr[i + 1]) {
+          swap(arr, i, i + 1)
+          iterations++
+          document.write(`Change # ${iterations} = [${arr.join(', ')}]<br>`)
+        }
+      }
+      rightIndex--
+
+      for (let i = rightIndex; i > leftIndex; i--) {
+        if (arr[i] < arr[i - 1]) {
+          swap(arr, i, i - 1)
+          iterations++
+          document.write(`Change # ${iterations} = [${arr.join(', ')}]<br>`)
+        }
+      }
+      leftIndex++
+    }
+
+    return iterations
+  }
+
+  // const array = randomArr(30, 1, 100)
+  const array = [70, 5, 74, 85, 9, 75, 81, 22, 4, 11]
+  document.write(`Оригінальний масив: [${array.join(', ')}]<br><br>`)
+  document.write('<h2>Етапи сортування Cocktail Sort</h2>')
+  const iterations = cocktailSort(array)
+  document.write(`<br>Посортований масив: [${array.join(', ')}]<br>`)
+  document.write(`Кількість обмінів (Cocktail Sort): ${iterations}`)
+</script>
+</html>
