@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Нехай X0 = 1, Xi = Xi-1 + 2i, де i = 1, 2,... . Визначити X10. Розв'язати з використанням рекурсивних і
+  нерекурсивних алгоритмів
+</p>
+
+<script>
+  function recursion(i) {
+    if (i === 0) return 1
+    else return recursion(i - 1) + 2 * i
+  }
+
+  function notRecursion(i) {
+    let result = 1
+    for (let j = 1; j <= i; j++) {
+      result += 2 * j
+    }
+    return result
+  }
+
+  let i = 10
+  let recursive = recursion(i)
+  let notRecursive = notRecursion(i)
+
+  document.write(`X(${i}) для рекурсивного алгоритму = ${recursive}<br>`)
+  document.write(`X(${i}) для нерекурсивного алгоритму = ${notRecursive}`)
+</script>
+</body>
+</html>

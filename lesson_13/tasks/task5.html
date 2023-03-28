@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>
+  Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться
+  перевірка.
+</p>
+
+<script>
+  function randNum(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1))
+  }
+
+  function addNum(num1, num2) {
+    return num1 + num2
+  }
+
+  function isCorrect(num) {
+    let info
+    let num1 = randNum(1,10), num2 = randNum(1,10)
+    const userAnswer = parseInt(prompt(`Приклад №${num}\n${num1} + ${num2} = ?`)) //
+    if (addNum(num1, num2) === userAnswer) info = 'OK'
+    else info = `Неправильно. Правильна відповідь = ${addNum(num1, num2)}`
+
+    alert(info)
+  }
+
+  function mathFunction(start, iter) {
+    setTimeout(() => {
+      if (start <= iter) {
+        isCorrect(start)
+        mathFunction(start + 1, iter)
+      }
+    }, 10000)
+  }
+
+  const start = 1
+  const iterations = 5
+  mathFunction(start, iterations)
+</script>
+</body>
+</html>
