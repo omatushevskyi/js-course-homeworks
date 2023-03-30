@@ -10,35 +10,19 @@
 <body>
 <h1>Задача 2</h1>
 <p>
-  Нехай X0 = X1 = 1, Xi = Xi-1 + 2 * Xi-2, де i = 1, 2,... . Визначити Xn. Розв'язати з використанням рекурсивних і
-  нерекурсивних алгоритмів
+  Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
 </p>
 
 <script>
-  function recursion(i) {
-    if (i === 0 || i === 1) return 1
-    else return recursion(i - 1) + recursion(i - 2) * 2
+  const date = {
+    day: 18,
+    month: 7,
+    year: 1997
   }
 
-  function notRecursion(i) {
-    if (i === 0 || i === 1) return 1
-    else {
-      let x_i_1 = 1, x_i_2 = 1, x_i
-      for (let j = 2; j <= i; j++) {
-        x_i = x_i_1 + x_i_2 * 2
-        x_i_2 = x_i_1
-        x_i_1 = x_i
-      }
-      return x_i
-    }
+  function whichWillBeYear(date) {
+
   }
-
-  let i = 4
-  let recursive = recursion(i)
-  let notRecursive = notRecursion(i)
-
-  document.write(`X(${i}) для рекурсивного алгоритму = ${recursive}<br>`)
-  document.write(`X(${i}) для нерекурсивного алгоритму = ${notRecursive}`)
 </script>
 </body>
 </html>
