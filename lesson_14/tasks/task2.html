@@ -20,7 +20,7 @@
     year: 2022,
 
    toString() {
-      return `${date.day}.${date.month}.${date.year}`
+      return `${this.day}.${this.month}.${this.year}`
    }
   }
 
@@ -35,7 +35,7 @@
     return dateCopy.year
   }
 
-  const monthsNum = 400
+  const monthsNum = 328
   const willBeYear = whichWillBeYear(date, monthsNum)
   document.write(`Починаючи від ${date} через ${monthsNum} місяців буде ${willBeYear} рік`)
 </script>
