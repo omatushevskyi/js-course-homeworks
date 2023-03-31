@@ -15,14 +15,29 @@
 
 <script>
   const date = {
-    day: 18,
-    month: 7,
-    year: 1997
+    day: 24,
+    month: 2,
+    year: 2022,
+
+   toString() {
+      return `${date.day}.${date.month}.${date.year}`
+   }
   }
 
-  function whichWillBeYear(date) {
+  function whichWillBeYear(date, monthsN) {
+    // Зробив копію обʼєкта, щоб можна було вивести стартову дату
+    const dateCopy = JSON.parse(JSON.stringify(date))
 
+    dateCopy.month += monthsN
+    dateCopy.year += Math.floor(dateCopy.month / 12)
+    dateCopy.month = dateCopy.month % 12
+
+    return dateCopy.year
   }
+
+  const monthsNum = 400
+  const willBeYear = whichWillBeYear(date, monthsNum)
+  document.write(`Починаючи від ${date} через ${monthsNum} місяців буде ${willBeYear} рік`)
 </script>
 </body>
 </html>
