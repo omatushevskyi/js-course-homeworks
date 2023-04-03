@@ -71,7 +71,7 @@
     return shopsSum
   }
 
-  // 2, 3, 4
+  // 2
   function shopsSumForSelectedDays(profitsList, fromDay, toDay) {
     let shopsSum = []
     for (let i = fromDay - 1; i < toDay; i++) {
@@ -82,6 +82,17 @@
       shopsSum.push(sum)
     }
     return shopsSum
+  }
+
+  // 3, 4
+  function shopsSumForWorkdaysWeekends(profitsList, fromDay, toDay) {
+    let sum = 0
+    for (let i = fromDay - 1; i < toDay; i++) {
+      for (let j = 0; j < profitsList.length; j++) {
+        sum += profitsList[j][i]
+      }
+    }
+    return sum
   }
 
   // 5
@@ -132,6 +143,7 @@
       }
     }
   }
+
   // 8
   function sortWeeksByMaxHighToLow(profitsList) {
     const sortedArr = JSON.parse(JSON.stringify(profitsList))
@@ -156,9 +168,9 @@
   // 2
   const shopsSumPerDay = shopsSumForSelectedDays(storesProfits, 1, 7)
   // 3
-  const shopsSumPerWorkdays = shopsSumForSelectedDays(storesProfits, 1, 5)
+  const shopsSumPerWorkdays = shopsSumForWorkdaysWeekends(storesProfits, 1, 5)
   // 4
-  const shopsSumPerWeekdays = shopsSumForSelectedDays(storesProfits, 6, 7)
+  const shopsSumPerWeekdays = shopsSumForWorkdaysWeekends(storesProfits, 6, 7)
   // 5
   const maxProfitForWed = shopMaxProfitForWed(storesProfits)
   // 6
@@ -173,8 +185,8 @@
   document.write(`Прибутки ${shopsNum} магазинів протягом тижня:<br>[${storesProfits.join(']<br>[')}]<br><br>`)
   document.write(`1. Загальний прибуток кожного магазину за тиждень: ${shopsSumPerWeek.join(', ')}<br>`)
   document.write(`2. Загальний прибуток усіх магазинів по днях: ${shopsSumPerDay.join(', ')}<br>`)
-  document.write(`3. Загальний прибуток за робочі дні: ${shopsSumPerWorkdays.join(', ')}<br>`)
-  document.write(`4. Загальний прибуток за вихідні дні: ${shopsSumPerWeekdays.join(', ')}<br>`)
+  document.write(`3. Загальний прибуток за робочі дні: ${shopsSumPerWorkdays}<br>`)
+  document.write(`4. Загальний прибуток за вихідні дні: ${shopsSumPerWeekdays}<br>`)
   document.write(`5. Максимальний прибуток за середу: ${maxProfitForWed}<br>`)
   document.write(`6. Список зі значеннями, які більші за 200: ${greater200.join(', ')}<br>`)
   document.write(`7. Посортовані тижні за зростанням:<br>[${sortLowToHigh.join(']<br>[')}]<br>`)

@@ -17,11 +17,10 @@
 
 <script>
   function guessWord(word) {
-    let start = 0, end = word.length, res
+    let currentIndex = 0, res
     function getLetter() {
-      if (start < end) res = word[start]
-      start++
-      return res
+      if (currentIndex === word.length) currentIndex = 0
+      return word[currentIndex++]
     }
     return getLetter
   }

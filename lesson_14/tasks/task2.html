@@ -19,23 +19,21 @@
     month: 2,
     year: 2022,
 
-   toString() {
+    toString() {
       return `${this.day}.${this.month}.${this.year}`
-   }
+    }
   }
 
   function whichWillBeYear(date, monthsN) {
     // Зробив копію обʼєкта, щоб можна було вивести стартову дату
-    const dateCopy = JSON.parse(JSON.stringify(date))
-
-    dateCopy.month += monthsN
-    dateCopy.year += Math.floor(dateCopy.month / 12)
-    dateCopy.month = dateCopy.month % 12
-
-    return dateCopy.year
+    let {month, year} = date
+    month += monthsN
+    if (month % 12 === 0) year += Math.floor(month / 12) - 1
+    else if (month > 12) year += Math.floor(month / 12)
+    return year
   }
 
-  const monthsNum = 328
+  const monthsNum = 22
   const willBeYear = whichWillBeYear(date, monthsNum)
   document.write(`Починаючи від ${date} через ${monthsNum} місяців буде ${willBeYear} рік`)
 </script>
