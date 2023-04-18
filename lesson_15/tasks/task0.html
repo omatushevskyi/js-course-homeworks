@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 0</title>
+</head>
+<body>
+<h1>Задача 0</h1>
+<p>
+  Дано два обʼєкти. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми,
+  а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і
+  максимальним значеннями. Використати обидва методи стосовно обидвох обʼєктів (використати call, apply)
+</p>
+
+<script>
+  const obj1 = {
+    arrayOfNum: [1, 2, 3, 4, 5],
+    sum: function () {
+      const min = Math.min(...this.arrayOfNum)
+      const max = Math.max(...this.arrayOfNum)
+      let sum = 0
+      for (let i = 0; i < this.arrayOfNum.length; i++) {
+        if (this.arrayOfNum[i] > min && this.arrayOfNum[i] < max)
+          sum += this.arrayOfNum[i]
+      }
+      return sum
+    }
+  }
+
+  const obj2 = {
+    arrayOfNum: [10, 20, 30, 40, 50],
+    product: function () {
+      const min = Math.min(...this.arrayOfNum)
+      const max = Math.max(...this.arrayOfNum)
+      let prod = 1
+      for (let i = 0; i < this.arrayOfNum.length; i++) {
+        if (this.arrayOfNum[i] > min && this.arrayOfNum[i] < max)
+          prod *= this.arrayOfNum[i]
+      }
+      return prod
+    }
+  }
+
+  const arrData1 = obj1.arrayOfNum
+  const arrData2 = obj2.arrayOfNum
+
+  const sumFistObj = obj1.sum()
+  const sumSecondObj = obj1.sum.call(obj2)
+  const prodFirstObj = obj2.product.call(obj1)
+  const prodSecondObj = obj2.product()
+
+  document.write(`Object 1: ${arrData1}<br>`)
+  document.write(`Object 2: ${arrData2}<br>`)
+  document.write(`Сума першого обʼєкта: ${sumFistObj}<br>`)
+  document.write(`Сума другого обʼєкта: ${sumSecondObj}<br>`)
+  document.write(`Добуток першого обʼєкта: ${prodFirstObj}<br>`)
+  document.write(`Добуток другого обʼєкта: ${prodSecondObj}`)
+</script>
+</body>
+</html>

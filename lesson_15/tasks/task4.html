@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 4</title>
+</head>
+<body>
+<h1>Задача 4</h1>
+<p>
+  Розробити клас Banner
+</p>
+<img src="img/4.png" alt="img">
+
+<script>
+  class Banner {
+    constructor(bannersList) {
+      this.bannersList = bannersList
+    }
+
+    getRandomBanner() {
+      return this.bannersList[Math.floor(Math.random() * this.bannersList.length)]
+    }
+
+    render() {
+      const banner = this.getRandomBanner()
+      document.write(`<a href=${banner.link}><img height="300px" src=${banner.img} alt="img"></a>`)
+    }
+  }
+
+  const bannersData = [
+    {
+      img: 'img/task_4-1.webp',
+      link: 'https://www.youtube.com'
+    },
+    {
+      img: 'img/task_4-2.webp',
+      link: 'https://www.facebook.com'
+    },
+    {
+      img: 'img/task_4-3.webp',
+      link: 'https://github.com'
+    }
+  ]
+
+  const banner1 = new Banner(bannersData)
+  const banner2 = new Banner(bannersData)
+  const banner3 = new Banner(bannersData)
+  banner1.render()
+  banner2.render()
+  banner3.render()
+</script>
+</body>
+</html>

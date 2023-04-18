@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>
+  Розробити клас «Керівник танців»
+</p>
+<img src="img/5.png" alt="img">
+
+<script>
+  class DanceManager {
+    constructor(boysList, girlsList) {
+      this.boysList = boysList
+      this.girlsList = girlsList
+    }
+
+    getRandomBoy() {
+      return this.boysList[Math.floor(Math.random() * this.boysList.length)]
+    }
+
+    getRandomGirl() {
+      return this.girlsList[Math.floor(Math.random() * this.girlsList.length)]
+    }
+
+    createDancingCouple() {
+      document.write(`Пара до танцю: ${this.getRandomBoy()} та ${this.getRandomGirl()}<br>`)
+    }
+
+    run() {
+      setInterval(() => {
+        this.createDancingCouple()
+      }, 5000)
+    }
+  }
+
+  const boysNames = ['Orest', 'Taras', 'Ivan', 'Ostap', 'Oleksandr', 'Robert', 'Mykhailo']
+  const girlsNames = ['Oksana', 'Yaroslava', 'Svitlana', 'Iryna', 'Ksenia']
+
+  const dm = new DanceManager(boysNames, girlsNames)
+  dm.run()
+</script>
+</body>
+</html>

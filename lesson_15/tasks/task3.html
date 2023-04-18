@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 3</title>
+</head>
+<body>
+<h1>Задача 3</h1>
+<p>
+  Розробити клас MultiChecker для перевірки таблиці множення
+</p>
+<img src="img/3.png" alt="img">
+
+<script>
+  class MultiChecker {
+    constructor(checkingNum) {
+      this.num = checkingNum
+      this.correctAnswers = 0
+      this.wrongAnswers = 0
+    }
+
+    // METHODS
+    getRandomNum(min = 1, max = 10) {
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    checkAnswer(randomNum, answer) {
+      if (this.num * randomNum === answer) this.correctAnswers++
+      else this.wrongAnswers++
+    }
+
+    exampleGenerator(examplesNum) {
+      for (let i = 0; i < examplesNum; i++) {
+        const randomNum = this.getRandomNum()
+        const num = this.num
+        const userAnswer = parseInt(prompt(`#${i + 1}\n${num} * ${randomNum} = ?`))
+        this.checkAnswer(randomNum, userAnswer)
+      }
+    }
+
+    render() {
+      return document.write(`<br>Правильних відповідей: ${this.correctAnswers}<br>Неправильних відповідей: ${this.wrongAnswers}`)
+    }
+  }
+
+  const mc = new MultiChecker(2)
+  mc.exampleGenerator(10)
+  mc.render()
+</script>
+</body>
+</html>

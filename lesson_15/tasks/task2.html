@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Створити об’єкт «Авто».
+</p>
+<img src="img/2.png" alt="img">
+
+<script>
+  function Auto(brand, fuelTankSize, fuel, seatsNum, passengers) {
+    this.brand = brand
+    this.fuelTankSize = fuelTankSize
+    this.fuelAmount = fuel
+    this.seats = seatsNum
+    this.passengers = passengers
+  }
+
+  Auto.prototype.fillUpAuto = function (fuelAmount) {
+    if (this.fuelAmount + fuelAmount > this.fuelTankSize)
+      throw new Error(`Забагато пального. Ви можете заправити авто на максимум ${this.fuelTankSize - this.fuelAmount} л`)
+    else
+      this.fuelAmount += fuelAmount
+  }
+
+  Auto.prototype.showPassengersNum = function () {
+    document.write(`Пасажирів в авто: ${this.passengers}<br>`)
+  }
+
+  Auto.prototype.addPassengers = function (passengerNum) {
+    if (this.passengers + passengerNum > this.seats)
+      throw new Error(`Пасажирів більше (${this.passengers + passengerNum}) ніж кількість місць (${this.seats})`)
+    else
+      this.passengers += passengerNum
+  }
+
+  Auto.prototype.dropOffPassenger = function (passengerNum) {
+    if (this.passengers - passengerNum < 0)
+      throw new Error('Кількість пасажирів не може бути відʼємною')
+    else
+      this.passengers -= passengerNum
+  }
+
+  const auto = new Auto('AUDI', 100, 10, 4, 0)
+  auto.showPassengersNum()
+  auto.addPassengers(3)
+  auto.showPassengersNum()
+  auto.dropOffPassenger(1)
+  auto.showPassengersNum()
+  auto.fillUpAuto(60)
+</script>
+</body>
+</html>
