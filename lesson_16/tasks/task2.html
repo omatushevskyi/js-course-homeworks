@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 2</title>
+</head>
+<body>
+<h1>Задача 2</h1>
+<p>
+  Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді
+  доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи
+  необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях збільшиться на 100.
+  Курс долара зберігати в окремому полі.
+</p>
+
+<script>
+  class TMoney {
+    #amountOfMoney
+    #exchangeRate
+
+    constructor(userMoney, dollarRate,) {
+      this.AmountOfMoney = userMoney
+      this.ExchangeRate = dollarRate
+    }
+
+    get AmountOfMoney() {
+      return this.#amountOfMoney
+    }
+
+    get ExchangeRate() {
+      return this.#exchangeRate
+    }
+
+    set AmountOfMoney(userAmount) {
+      this.#amountOfMoney = userAmount
+    }
+
+    set ExchangeRate(userRate) {
+      this.#exchangeRate = userRate
+    }
+
+    withdraw(uahValue) {
+      if (uahValue / this.ExchangeRate > this.AmountOfMoney)
+        throw new Error(`Недостатньо грошей на рахунку. ${uahValue / this.ExchangeRate} ${this.ExchangeRate}`)
+      this.AmountOfMoney -= (uahValue / this.ExchangeRate)
+    }
+
+    deposit(uahValue) {
+      this.AmountOfMoney += (uahValue / this.ExchangeRate)
+    }
+
+    whichExchangeRate(increaseBy) {
+      return (this.AmountOfMoney * this.ExchangeRate + increaseBy) / this.AmountOfMoney
+    }
+
+    toString() {
+      return `Your money: ${this.AmountOfMoney.toFixed(2)}$<br>1$ = ${this.ExchangeRate}₴<br>`
+    }
+  }
+
+  // class end
+
+  const bankAccount = new TMoney(1000.00, 37.44)
+  document.write(bankAccount.toString())
+
+  bankAccount.deposit(15000)
+  bankAccount.withdraw(37440.00)
+  document.write(bankAccount.toString())
+  const whichRate = bankAccount.whichExchangeRate(100)
+  document.write(`<br>Курсу долара, при якому сума у гривнях збільшиться на 100 = ${whichRate.toFixed(2)}`)
+</script>
+</body>
+</html>

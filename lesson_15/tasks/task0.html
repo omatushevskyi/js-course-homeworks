@@ -19,28 +19,17 @@
   const obj1 = {
     arrayOfNum: [1, 2, 3, 4, 5],
     sum: function () {
-      const min = Math.min(...this.arrayOfNum)
-      const max = Math.max(...this.arrayOfNum)
-      let sum = 0
-      for (let i = 0; i < this.arrayOfNum.length; i++) {
-        if (this.arrayOfNum[i] > min && this.arrayOfNum[i] < max)
-          sum += this.arrayOfNum[i]
-      }
-      return sum
+      return this.arrayOfNum.reduce((sum, element) => element + sum)
     }
   }
 
   const obj2 = {
     arrayOfNum: [10, 20, 30, 40, 50],
-    product: function () {
-      const min = Math.min(...this.arrayOfNum)
-      const max = Math.max(...this.arrayOfNum)
-      let prod = 1
-      for (let i = 0; i < this.arrayOfNum.length; i++) {
-        if (this.arrayOfNum[i] > min && this.arrayOfNum[i] < max)
-          prod *= this.arrayOfNum[i]
-      }
-      return prod
+    product: function (min, max) {
+      return this.arrayOfNum.reduce((prevProduct, element) =>
+        element >= min && element <= max
+          ? prevProduct * element
+          : prevProduct, 1)
     }
   }
 
@@ -49,8 +38,8 @@
 
   const sumFistObj = obj1.sum()
   const sumSecondObj = obj1.sum.call(obj2)
-  const prodFirstObj = obj2.product.call(obj1)
-  const prodSecondObj = obj2.product()
+  const prodFirstObj = obj2.product.apply(obj1, [4, 5])
+  const prodSecondObj = obj2.product(39, 51)
 
   document.write(`Object 1: ${arrData1}<br>`)
   document.write(`Object 2: ${arrData2}<br>`)

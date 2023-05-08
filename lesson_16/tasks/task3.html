@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 3</title>
+</head>
+<body>
+<h1>Задача 3</h1>
+<p></p>
+<img width="500px" src="img/3.png" alt="img">
+
+<script>
+  class FoundationDate {
+    constructor(year, month) {
+      this.year = year
+      this.month = month
+    }
+
+    toString() {
+      return `Date of foundation: ${this.year}.${this.month}`
+    }
+  }
+
+  class Services {
+    constructor({name, cost, deadline}) {
+      this.name = name
+      this.cost = cost
+      this.deadline = deadline
+    }
+
+    toString() {
+      return `Послуга: ${this.name}<br>— ціна: ${this.cost} грн<br>— термін виконання: ${this.deadline} дні<br>`
+    }
+  }
+
+  class BranchAddr {
+    constructor({country, city, street, buildingNumber}) {
+      this.country = country
+      this.city = city
+      this.street = street
+      this.number = buildingNumber
+    }
+
+    toString() {
+      return `Адреса філіалу: ${this.city}, ${this.country}. вул. ${this.street} ${this.number}<br>`
+    }
+  }
+
+  class Company {
+    #name
+    constructor(companyName, dateOfFoundation, servicesList, branchesList) {
+      this.Name = companyName
+      this.foundationDate = dateOfFoundation
+      this.services = [...servicesList]
+      this.branchesAddr = [...branchesList]
+    }
+
+    get Name() {
+      return this.#name
+    }
+
+    set Name(companyName) {
+      this.#name = companyName
+    }
+
+    howLongExist() {
+      const currentDate = new Date()
+      const currentYear = currentDate.getFullYear()
+
+      return currentYear - this.foundationDate.year
+    }
+
+    showBranchesInCity(city) {
+      for (const branch of this.branchesAddr) {
+        if (branch.city === city) document.write(branch)
+      }
+    }
+
+    showSelectedServices(cost, deadline) {
+      for (const service of this.services) {
+        if (service.cost === cost && service.deadline === deadline) document.write(service)
+      }
+    }
+
+    toString() {
+      return `<br>Фірма ${this.Name} існує вже ${company.howLongExist()} роки<br>`
+    }
+  } // end
+
+  let services = [
+    {name: 'Доставка вантажу до 30 кг', cost: 100, deadline: 2},
+    {name: 'Доставка вантажу до 50 кг', cost: 150, deadline: 2},
+    {name: 'Доставка вантажу до 100 кг', cost: 250, deadline: 2},
+    {name: 'Доставка вантажу до 200 кг', cost: 500, deadline: 2},
+    {name: 'Допомога з переїздом', cost: 500, deadline: 2}
+  ]
+
+  let branchesAddr = [
+    {country: 'Україна', city: 'Львів', street: 'Шевченка', buildingNumber: 74},
+    {country: 'Україна', city: 'Львів', street: 'Бандери', buildingNumber: 18},
+    {country: 'Україна', city: 'Київ', street: 'Лесі Українки', buildingNumber: 32},
+    {country: 'Україна', city: 'Дніпро', street: 'Азовсталі', buildingNumber: 54},
+    {country: 'Польща', city: 'Варшава', street: '2', buildingNumber: 44},
+    {country: 'Німеччина', city: 'Берлін', street: '2', buildingNumber: 21},
+  ]
+
+  const servicesList = services.reduce((prevArr, el) => {
+    prevArr.push(new Services(el))
+    return prevArr
+  }, [])
+
+  const branchesAddrList = branchesAddr.reduce((prevArr, el) => {
+    let temp = new BranchAddr(el)
+    prevArr.push(temp)
+    return prevArr
+  }, [])
+
+  const date = new FoundationDate(2000, 7)
+  const company = new Company('FlashDelivery', date, servicesList, branchesAddrList)
+
+  document.write(company.toString())
+  company.showBranchesInCity('Львів')
+  company.showSelectedServices(500, 2)
+</script>
+</body>
+</html>

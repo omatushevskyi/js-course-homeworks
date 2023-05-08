@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою
+  із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів,
+  місяців чи років. Введення та виведення дати реалізувати за допомогою методу toString.
+</p>
+
+<script>
+  class TDate {
+    #day
+    #month
+    #year
+
+    constructor(day, month, year) {
+      this.Day = day
+      this.Month = month
+      this.Year = year
+    }
+
+    set Day(userDay) {
+      if (!(userDay > 0 && userDay <= 31)) throw new Error('Значення дня неправильне. Введіть від 1 до 31')
+      this.#day = userDay
+    }
+
+    set Month(userMonth) {
+      if (!(userMonth > 0 && userMonth <= 12)) throw new Error('Значення місця неправильне. Введіть від 1 до 12')
+      this.#month = userMonth
+    }
+
+    set Year(userYear) {
+      if (userYear < 0) throw new Error('Рік не може бути відʼємним')
+      this.#year = userYear
+    }
+
+    get Day() {
+      return this.#day
+    }
+
+    get Month() {
+      return this.#month
+    }
+
+    get Year() {
+      return this.#year
+    }
+
+    increaseYears(value) {
+      this.#year += value
+    }
+
+    decreaseYears(value) {
+      this.#year -= value
+    }
+
+    increaseMonths(value) {
+      this.#month += value
+      this.increaseYears(Math.floor((this.#month - 1) / 12))
+      this.#month = (this.#month - 1) % 12 + 1
+    }
+
+    decreaseMonths(value) {
+      this.#month -= value
+      while (this.#month <= 0) {
+        this.#month += 12
+        this.decreaseYears(1)
+      }
+    }
+
+    increaseDays(value) {
+      this.#day += value
+      while (this.#day > this.getDaysInMonth()) {
+        this.#day -= this.getDaysInMonth()
+        this.increaseMonths(1)
+      }
+    }
+
+    decreaseDays(value) {
+      this.#day -= value
+      while (this.#day <= 0) {
+        this.decreaseMonths(1)
+        this.#day += this.getDaysInMonth()
+      }
+    }
+
+    getDaysInMonth() {
+      const isLeapYear = (this.#year % 4 === 0 && this.#year % 100 !== 0) || this.#year % 400 === 0
+      const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      return daysInMonth[this.#month - 1]
+    }
+
+    toString() {
+      return `${this.Day}.${this.Month}.${this.Year}<br>`
+    }
+  }
+
+  const date = new TDate(3, 5, 2023)
+  const addDays = 20, addMonths = 9, addYears = 6
+  const subtractDays = 147, subtractMonths = 56, subtractYears = 34
+
+  document.write(`Початкова дата: ${date.toString()}`)
+  date.increaseDays(addDays)
+  document.write(`Через ${addDays} днів буде ${date.toString()}`)
+  date.increaseMonths(addMonths)
+  document.write(`Через ${addMonths} місяців буде ${date.toString()}`)
+  date.increaseYears(addYears)
+  document.write(`Через ${addYears} років буде ${date.toString()}<br>`)
+
+  document.write(`Початкова дата: ${date.toString()}`)
+  date.decreaseDays(subtractDays)
+  document.write(`${subtractDays} днів тому була дата ${date.toString()}`)
+  date.decreaseMonths(subtractMonths)
+  document.write(`${subtractMonths} місяців тому була дата ${date.toString()}`)
+  date.decreaseYears(subtractYears)
+  document.write(`${subtractYears} років тому була дата ${date.toString()}`)
+</script>
+</body>
+</html>

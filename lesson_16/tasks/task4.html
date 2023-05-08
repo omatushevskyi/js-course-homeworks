@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 4</title>
+</head>
+<body>
+<h1>Задача 4</h1>
+<p>
+  Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для
+  зберігання кількості купюр кожного із номіналів від 5 до 200 гривень.
+  Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат,
+  та метод зняття деякої суми.
+</p>
+
+<script>
+  class TBanknote {
+    #number
+    #denomination
+
+    constructor(denomination, number) {
+      this.Denomination = denomination
+      this.Number_ = number
+    }
+
+    get Denomination() {
+      return this.#denomination
+    }
+
+    get Number_() {
+      return this.#number
+    }
+
+    set Denomination(value) {
+      this.#denomination = value
+    }
+
+    set Number_(value) {
+      this.#number = value
+    }
+  }
+
+  class TBankomat {
+    #banknotes
+
+    constructor(banknotes) {
+      this.Banknotes = [...banknotes]
+    }
+
+    get Banknotes() {
+      return this.#banknotes
+    }
+
+    set Banknotes(value) {
+      this.#banknotes = value
+    }
+
+    minWithdrawalSum() {
+      let min = Infinity
+      for (let i = 0; i < this.Banknotes.length; i++) {
+        if (this.Banknotes[i].Number_ > 0 && this.Banknotes[i].Denomination < min)
+          min = this.Banknotes[i].Denomination
+      }
+      return min
+    }
+
+    maxWithdrawalSum() {
+      return this.Banknotes.reduce((preSum, el) => preSum + el.Denomination * el.Number_, 0)
+    }
+
+    banknotesToWithdraw(value) {
+      const banknotesToWithdraw = []
+      for (let i = this.Banknotes.length - 1; i >= 0; i--) {
+        const banknote = this.Banknotes[i]
+        if (value >= banknote.Denomination && banknote.Number_ > 0) {
+          const count = Math.min(Math.floor(value / banknote.Denomination), banknote.Number_)
+          banknotesToWithdraw.push(new TBanknote(banknote.Denomination, count))
+          value -= count * banknote.Denomination
+        }
+      }
+      return banknotesToWithdraw
+    }
+
+    canWithdraw(banknotesToWithdraw, withdrawalAmount) {
+      const sum = banknotesToWithdraw.reduce((prevSum, el) => prevSum + el.Number_ * el.Denomination, 0)
+      return withdrawalAmount === sum
+    }
+
+    withdraw(value) {
+      if (value <= 0) throw new Error(`Сума не може бути відʼємною`)
+      if (value > this.maxWithdrawalSum()) throw new Error(`В банкоматі недостатньо коштів`)
+
+      const withdrawalBanknotes = this.banknotesToWithdraw(value)
+
+      if (!this.canWithdraw(withdrawalBanknotes, value))
+        throw new Error('Банкомат не може видати гроші наявними купюрами')
+
+      let sum = 0
+      while (sum < value) {
+        for (let i = 0; i < withdrawalBanknotes.length; i++) {
+          const banknote = this.Banknotes.find(el => el.Denomination === withdrawalBanknotes[i].Denomination)
+          banknote.Number_ -= withdrawalBanknotes[i].Number_
+          sum += withdrawalBanknotes[i].Number_ * withdrawalBanknotes[i].Denomination
+        }
+      }
+
+      return this.toString(withdrawalBanknotes, value)
+    }
+
+    toString(withdrawalBanknotes, withdrawalAmount) {
+      let show = ''
+      for (const b of withdrawalBanknotes) {
+        show += `${b.Denomination} x ${b.Number_}<br>`
+      }
+      return `Ви вивели ${withdrawalAmount} грн наступними купюрами:<br>${show}`
+    }
+  } // class end
+
+  const banknotes = [
+    new TBanknote(5, 100),
+    new TBanknote(10, 0),
+    new TBanknote(20, 0),
+    new TBanknote(50, 10),
+    new TBanknote(100, 10),
+    new TBanknote(200, 10),
+  ]
+
+  const atm = new TBankomat(banknotes)
+  document.write(`Мінімальна сума виведення: ${atm.minWithdrawalSum()}<br>`)
+  document.write(`Максимальна сума виведення: ${atm.maxWithdrawalSum()} грн<br>`)
+  document.write(atm.withdraw(990))
+</script>
+</body>
+</html>
