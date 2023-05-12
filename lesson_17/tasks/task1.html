@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 1</title>
+</head>
+<body>
+<h1>Задача 1</h1>
+<p>
+  Створити клас, що дозволяє виконувати такі операції над масивами:
+  знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+</p>
+
+<script>
+  class ArraysOperations {
+    static NumOfPositive(arr) {
+      return arr.reduce((prevNum, el) => el >= 0 ? prevNum + 1 : prevNum, 0)
+    }
+
+    static NumOfNegative(arr) {
+      return arr.reduce((prevNum, el) => el < 0 ? prevNum + 1 : prevNum, 0)
+    }
+
+    static NumberOfOccurrences(arr, num) {
+      return arr.reduce((prevNum, el) => el === num ? prevNum + 1 : prevNum, 0)
+    }
+  }
+
+  const arr = [-1, 0, 12, 3, 5, 5, -4, -6, 9, 5, 10, -111, 20, 5]
+  const number = 5
+
+  document.write(`Кількість додатніх чисел в масиві: ${ArraysOperations.NumOfPositive(arr)}<br>`)
+  document.write(`Кількість відʼємних чисел в масиві: ${ArraysOperations.NumOfNegative(arr)}<br>`)
+  document.write(`Кількість входжень числа ${number}: ${ArraysOperations.NumberOfOccurrences(arr, number)}`)
+</script>
+</body>
+</html>

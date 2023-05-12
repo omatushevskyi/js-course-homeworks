@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 5</title>
+</head>
+<body>
+<h1>Задача 5</h1>
+<p>
+  Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис),
+  назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки
+  (спеціальна література, хобі, домашнє господарство і т.д.), походження книги і наявність на даний час.
+  Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.
+</p>
+
+<script>
+  class Library {
+    constructor() {
+      this.library = []
+    }
+
+    addBook(newBook) {
+      this.library.push(newBook)
+    }
+  }
+
+  class Book {
+    constructor({authors, title, genre, publisher}) {
+      this.authors = [...authors]
+      this.title = title
+      this.genre = genre
+      this.publisher = new Publisher(publisher.name, publisher.regNum, publisher.year)
+    }
+  }
+
+  class Author {
+    constructor(firstName, lastName, birthYear, description) {
+      this.name = firstName
+      this.surname = lastName
+      this.birth = birthYear
+      this.desc = description
+    }
+  }
+
+  // class Authors {
+  //   constructor() {
+  //     this.authors = []
+  //   }
+  //
+  //   addAuthor(author) {
+  //     this.authors.push(author)
+  //   }
+  // }
+
+  class Publisher {
+    constructor(pubName, regNumber, foundationYear) {
+      this.name = pubName
+      this.regNum = regNumber
+      this.year = foundationYear
+    }
+  }
+
+  const myLibrary = new Library()
+
+  const book = {
+    authors: [
+      new Author('Фредрік', 'Бакман', 1968, 'Lorem ipsum dolor sit amet.'),
+      new Author('Стівен','Кінг', 1899,'Lorem ipsum dolor sit amet.')],
+    title: 'Carry',
+    genre: 'Horror',
+    publisher: {pubName: 'Vihola', regNum: 22434, foundationYear: 2014}
+  }
+
+  const b = new Book(book)
+  myLibrary.addBook(b)
+
+  console.log(myLibrary);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Task 4</title>
+</head>
+<body>
+<h1>Задача 4</h1>
+<p>
+  Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник (назва,
+  реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за
+  назвою фірми
+</p>
+
+<script>
+  class Item {
+    constructor({name, unit, amount, producerName, regNumber}) {
+      this.name = name
+      this.unit = unit
+      this.amount = amount
+      this.producer = new Producer(producerName, regNumber)
+    }
+
+  }
+
+  class Producer {
+    constructor(producerName, regNumber) {
+      this.name = producerName
+      this.regNumber = regNumber
+    }
+  }
+
+  class Warehouse {
+    constructor() {
+      this.items = []
+    }
+
+    addItem(item) {
+      this.items.push(item)
+      document.write(`Зареєстровано товар: ${item.name} — ${item.amount} ${item.unit}<br>`)
+    }
+
+    shipmentItem(itemName, itemAmount) {
+      const item = this.items.reduce((prevArr, item) => item.name === itemName ? item : prevArr)
+      if (item.amount - itemAmount < 0 )
+        throw new Error(`Недостатньо товару (${item.name}) на скраді. Доступно ${item.amount} ${item.unit}`)
+
+      item.amount -= itemAmount
+      document.write(`Відвантажено товар: ${item.name} — ${itemAmount} ${item.unit}<br>`)
+    }
+
+    filterByItemName(itemName) {
+      return this.items.filter(item => item.name === itemName)
+    }
+
+    filterByProducerName(producerName) {
+      return this.items.filter(item => item.producer.name === producerName)
+    }
+
+    toString() {
+      console.log(this.items)
+      document.write('Актуальний стан<br>')
+      this.items.forEach(item => document.write(`Товар: ${item.name} — ${item.amount}${item.unit}. Виробник: ${item.producer.name} [${item.producer.regNumber}]<br>`))
+    }
+  }
+
+  const itemsList = [
+    {name: 'iPhone 14', unit: 'шт', amount: 50, producerName: 'Apple', regNumber: 12983487},
+    {name: 'MacBook Air M1', unit: 'шт', amount: 30, producerName: 'Apple', regNumber: 12983487},
+    {name: 'Legion 5', unit: 'шт', amount: 20, producerName: 'Lenovo', regNumber: 67438951},
+    {name: 'Play Station 5', unit: 'шт', amount: 25, producerName: 'Sony', regNumber: 12983487},
+    {name: 'MX500 SSD', unit: 'шт', amount: 60, producerName: 'Crucial', regNumber: 78978634}
+  ]
+
+  const warehouse = new Warehouse()
+  itemsList.forEach(el => warehouse.addItem(new Item(el)))
+  document.write('———————————————————————————————————')
+  warehouse.shipmentItem('iPhone 14', 10)
+  warehouse.shipmentItem('Legion 5', 2)
+  warehouse.shipmentItem('Play Station 5', 10)
+  document.write('———————————————————————————————————')
+  warehouse.toString()
+  document.write('———————————————————————————————————')
+
+  document.write('Фільтрація за назвою товару<br>')
+  const byItemName = warehouse.filterByItemName('Legion 5')
+  byItemName.map(item => document.write(`${item.name} — ${item.amount} ${item.unit}. ${item.producer.name}<br>`))
+
+  document.write('———————————————————————————————————')
+
+  document.write('Фільтрація за назвою фірми<br>')
+  const byProducerName = warehouse.filterByProducerName('Apple')
+  byProducerName.map(item => document.write(`${item.name} — ${item.amount} ${item.unit}. ${item.producer.name}<br>`))
+
+
+</script>
+</body>
+</html>
